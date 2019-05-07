@@ -1,0 +1,488 @@
+Как создать новую ветку в локальном репозитории
+Создаем новую ветку в локальном репозитории:
+$ git checkout -b dev
+Switched to a new branch &#039;dev&#039;
+1
+2
+$ git checkout -b dev
+Switched to a new branch &#039;dev&#039;
+Публикуем ее на github:
+$ git push origin dev
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github.com:devlabuser/sharp.git
+ * [new branch]      dev -&gt; dev
+1
+2
+3
+4
+$ git push origin dev
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github.com:devlabuser/sharp.git
+ * [new branch]      dev -&gt; dev
+ 
+
+Как переключиться на другую ветку в git
+$ git checkout project2_branch
+1
+$ git checkout project2_branch
+Если вы случайно удалили какой-то файл, можно извлечь его из хранилища:
+
+$ git checkout readme.txt
+1
+$ git checkout readme.txt
+ 
+
+Как посмотреть список веток
+Команда &quot;branch&quot; позволяет посмотреть список веток в локальном репозитории. Текущая ветка будет помечена звездочкой:
+
+$ git branch
+* dev
+  master
+1
+2
+3
+$ git branch
+* dev
+  master
+ 
+
+Как сделать commit
+Создаем новую ветку, выполняем в ней нужные изменения.
+
+Список всех измененных и добавленных файлов можно просмотреть командой:
+$ git status
+1
+$ git status
+Подготавливаем коммит, добавляя в него файлы командой:
+$ git add   ...
+1
+$ git add   ...
+Или удаляем устаревшие файлы:
+
+$ git rm   ...
+1
+$ git rm   ...
+Выполняем коммит:
+$ git commit -m &#039;Комментарий к коммиту&#039;
+1
+$ git commit -m &#039;Комментарий к коммиту&#039;
+Как правило, в репозитории существует две основные ветки - dev и master. Dev - общая ветка разработчиков и тестировщиков. Именно в нее добавляются все новые разработки перед очередным релизом. Master - ветка для выкладки продукта на боевые сервера.
+
+После коммита надо влить в нашу ветку изменения из ветки dev и master:
+$ git pull origin dev 
+$ git pull origin master
+1
+2
+$ git pull origin dev 
+$ git pull origin master
+Теперь наша ветка содержит изменения для проекта, и все последние изменения по другим задачам, которые успела внести команда.
+
+Переключаемся на ветку dev:
+$ git checkout dev
+1
+$ git checkout dev
+Вливаем в dev изменения из ветки проекта:
+$ git merge project_branch
+1
+$ git merge project_branch
+Заливаем последнюю версию ветки dev на удаленный сервер:
+$ git push origin dev
+
+Counting objects: 4, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 286 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:devlab/sharp.git
+   d528335..9a452d9  dev -&gt; dev
+1
+2
+3
+4
+5
+6
+7
+8
+9
+$ git push origin dev
+ 
+Counting objects: 4, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 286 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:devlab/sharp.git
+   d528335..9a452d9  dev -&gt; dev
+push может не пройти, потому что удалённый origin/dev обогнал локальную его копию.
+
+ 
+
+Как решить конфликт бинарных файлов
+Допустим, при слиянии с другой веткой git выдал ошибку. Команда git status возвращает информацию о конфликте:
+
+$ git status
+...
+Unmerged paths:
+  (use &quot;git add ...&quot; to mark resolution)
+
+        both modified:      root/css/styles.css.gz
+
+
+$ git diff root/css/styles.css.gz
+diff --cc root/css/styles.css.gz
+index 970c721,bc6d170..0000000
+Binary files differ
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+$ git status
+...
+Unmerged paths:
+  (use &quot;git add ...&quot; to mark resolution)
+ 
+        both modified:      root/css/styles.css.gz
+ 
+ 
+$ git diff root/css/styles.css.gz
+diff --cc root/css/styles.css.gz
+index 970c721,bc6d170..0000000
+Binary files differ
+Конфликтный файл является бинарным (это могут быть архивные файлы, изображения и т.п.), и решение конфликта стандартным способом, с помощью редактирования - не возможно.
+
+Чтобы решить такой конфликт, надо просто выбрать - какая версия файла будет использоваться: ваша или из вливаемой ветки. Чтобы использовать свой вариант файла, вводим команду:
+
+git checkout --ours binary.dat
+git add binary.dat
+1
+2
+git checkout --ours binary.dat
+git add binary.dat
+Если мы выбираем версию из вливаемой ветки:
+
+git checkout --theirs binary.dat
+git add binary.dat
+1
+2
+git checkout --theirs binary.dat
+git add binary.dat
+&quot;ours&quot; - от английского &quot;наш&quot;, &quot;theirs&quot; - от английского &quot;их&quot;.
+
+ 
+
+Как посмотреть историю изменений
+git log - просмотр логов.
+
+$ git log
+commit 9a452d9cdbdb57e7e4f2b09f8ce2f776cd56657a
+Author: DevLab User 
+Date:   Wed Jul 31 18:35:47 2013 +0400
+
+    first commit
+
+commit d528335724dfc15461996ed9d44d74f23ce6a075
+Author: DevLab User 
+Date:   Wed Jul 31 06:24:57 2013 -0700
+
+    Initial commit
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+$ git log
+commit 9a452d9cdbdb57e7e4f2b09f8ce2f776cd56657a
+Author: DevLab User 
+Date:   Wed Jul 31 18:35:47 2013 +0400
+ 
+    first commit
+ 
+commit d528335724dfc15461996ed9d44d74f23ce6a075
+Author: DevLab User 
+Date:   Wed Jul 31 06:24:57 2013 -0700
+ 
+    Initial commit
+Вывод данных о каждом коммите в одну строку:
+
+git log --pretty=oneline
+
+9a452d9cdbdb57e7e4f2b09f8ce2f776cd56657a first commit
+d528335724dfc15461996ed9d44d74f23ce6a075 Initial commit
+1
+2
+3
+4
+git log --pretty=oneline
+ 
+9a452d9cdbdb57e7e4f2b09f8ce2f776cd56657a first commit
+d528335724dfc15461996ed9d44d74f23ce6a075 Initial commit
+Для вывода информации git log использует просмотрщик, указанный в конфиге репозитория.
+
+Поиск по ключевому слову в комментариях к коммиту:
+
+$ git log | grep -e &quot;first&quot;
+    first commit
+1
+2
+$ git log | grep -e &quot;first&quot;
+    first commit
+Команда &quot;git show&quot; позволяет просмотреть, какие именно изменения произошли в указанном коммите:
+
+$ git show 99452d955bdb57e7e4f2b09f8ce2fbb6cd56377a
+
+commit 99452d955bdb57e7e4f2b09f8ce2fbb6cd56377a
+Author: DevLab User 
+Date:   Wed Jul 31 18:35:47 2013 +0400
+
+    first commit
+
+diff --git a/readme.txt b/readme.txt
+new file mode 100644
+index 0000000..4add785
+--- /dev/null
++++ b/readme.txt
+@@ -0,0 +1 @@
++Text
+ No newline at end of file
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+$ git show 99452d955bdb57e7e4f2b09f8ce2fbb6cd56377a
+ 
+commit 99452d955bdb57e7e4f2b09f8ce2fbb6cd56377a
+Author: DevLab User 
+Date:   Wed Jul 31 18:35:47 2013 +0400
+ 
+    first commit
+ 
+diff --git a/readme.txt b/readme.txt
+new file mode 100644
+index 0000000..4add785
+--- /dev/null
++++ b/readme.txt
+@@ -0,0 +1 @@
++Text
+ No newline at end of file
+Можно посмотреть построчную информацию о последнем коммите, имя автора и хэш коммита:
+
+$ git blame README.md
+
+^d528335 (devlabuser 2013-07-31 06:24:57 -0700 1) sharp
+^d528335 (devlabuser 2013-07-31 06:24:57 -0700 2) =====
+1
+2
+3
+4
+$ git blame README.md
+ 
+^d528335 (devlabuser 2013-07-31 06:24:57 -0700 1) sharp
+^d528335 (devlabuser 2013-07-31 06:24:57 -0700 2) =====
+git annotate, выводит измененные строки и информацию о коммитах, где это произошло:
+
+$ git annotate readme.txt
+9a452d9c        (DevLab User      2013-07-31 18:35:47 +0400       1)Text
+1
+2
+$ git annotate readme.txt
+9a452d9c        (DevLab User      2013-07-31 18:35:47 +0400       1)Text
+ 
+
+Как сделать откат
+git log - просмотр логов, показывает дельту (разницу/diff), привнесенную каждым коммитом.
+commit 9a452d9cdbdb57e7e4f2b09f8ce2f776cd56657a
+Author: devlabuser 
+Date:   Wed Jul 31 18:35:47 2013 +0400
+
+    first commit
+
+commit d528335724dfc15461996ed9d44d74f23ce6a075
+Author: devlabuser 
+Date:   Wed Jul 31 06:24:57 2013 -0700
+
+    Initial commit
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+commit 9a452d9cdbdb57e7e4f2b09f8ce2f776cd56657a
+Author: devlabuser 
+Date:   Wed Jul 31 18:35:47 2013 +0400
+ 
+    first commit
+ 
+commit d528335724dfc15461996ed9d44d74f23ce6a075
+Author: devlabuser 
+Date:   Wed Jul 31 06:24:57 2013 -0700
+ 
+    Initial commit
+Копируем идентификатор коммита, до которого происходит откат.
+Откатываемся до последнего успешного коммита (указываем последний коммит):
+$ git reset --hard 9a452d955bdb57e7e4f2b09f8ce2fbb6cd56377a
+HEAD is now at 9a45779 first commit
+1
+2
+$ git reset --hard 9a452d955bdb57e7e4f2b09f8ce2fbb6cd56377a
+HEAD is now at 9a45779 first commit
+
+Можно откатить до последней версии ветки:
+$ git reset --hard origin/dev
+HEAD is now at 9a45779 first commit
+1
+2
+$ git reset --hard origin/dev
+HEAD is now at 9a45779 first commit
+После того, как откат сделан, и выполнен очередной локальный коммит, при попытке сделать push в удаленный репозиторий, git может начать ругаться, что версия вашей ветки младше чем на github и вам надо сделать pull. Это лечится принудительным коммитом:
+
+git push -f origin master
+1
+git push -f origin master
+ 
+
+Как выполнить слияние с другой веткой
+git merge выполняет слияние текущей и указанной ветки. Изменения добавляются в текущую ветку.
+
+$ git merge origin/ticket_1001_branch
+1
+$ git merge origin/ticket_1001_branch
+git pull забирает изменения из ветки на удаленном сервере и проводит слияние с активной веткой.
+
+$ git pull origin ticket_1001_branch
+1
+$ git pull origin ticket_1001_branch
+git pull отличается от git merge тем, что merge только выполняет слияние веток, а pull прежде чем выполнить слияние - закачивает изменения с удаленного сервера. merge удобно использовать для слияния веток в локальном репозитории, pull - слияния веток, когда одна из них лежит на github.
+
+ 
+
+Создание нового локального репозитория
+$ mkdir project_dir
+$ cd project_dir
+$ git init
+1
+2
+3
+$ mkdir project_dir
+$ cd project_dir
+$ git init
+ 
+
+git cherry-pick
+git cherry-pick помогает применить один-единственный коммит из одной ветки к дереву другой.
+
+Для этого нужно выписать ветку, в которую будем вливать коммит:
+git checkout master
+1
+git checkout master
+Обновить ее:
+git pull origin master
+1
+git pull origin master
+Выполнить команду, указать код коммита:
+git cherry-pick eb042098a5
+1
+git cherry-pick eb042098a5
+После этого обновить ветку на сервере:
+git push origin master
+1
+git push origin master
+ 
+
+Как раскрасить команды git
+После создания репозитория в текущей директории появится субдиректория .git . Она содержит файл config .
+
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote &quot;origin&quot;]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = git@github.com:devlab/sharp.git
+[branch &quot;master&quot;]
+        remote = origin
+        merge = refs/heads/master
+[branch &quot;dev&quot;]
+        remote = origin
+        merge = refs/heads/dev
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote &quot;origin&quot;]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = git@github.com:devlab/sharp.git
+[branch &quot;master&quot;]
+        remote = origin
+        merge = refs/heads/master
+[branch &quot;dev&quot;]
+        remote = origin
+        merge = refs/heads/dev
+Чтобы раскрасить вывод git, можно добавить в файл блок [color]:
+
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+        ui = auto
+1
+2
+3
+4
+5
+6
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+        ui = auto
