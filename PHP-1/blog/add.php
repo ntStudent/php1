@@ -47,7 +47,6 @@ else{
 		<meta charset="UTF-8">
 		<title>add news</title>
 		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" href="../../../css/course_php-1_admin.css">
 		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
