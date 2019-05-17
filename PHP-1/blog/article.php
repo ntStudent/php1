@@ -20,6 +20,7 @@
 	*/
 	
 	if($fileName != ''){
+		
 		$fex1 = "data/$fileName";
 
 		if(!file_exists($fex1)){//проверка существует ли файл
@@ -33,6 +34,9 @@
 		echo "<h1>$fileName</h1>";
 		echo "<div>$fileContent</div>";
 		}
+	}
+	else{
+		echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Нет параметра GET</div>";
 	}
 ?>
 	</body>
