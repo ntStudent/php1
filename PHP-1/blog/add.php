@@ -19,8 +19,8 @@ if(count($_POST) > 0){
 	if ((mb_strlen($title) < 3)){//проверка длинны строки
 		$msg1 = "В имени файла должно быть больше чем три символа";
 	}
-	elseif(!preg_match("/^([-a-zA-Z])/", $title)){//установка по тому из каких символов должна состоять строка
-		$msg1 = "Имя файла должно начинаться с буквы";
+	elseif(!preg_match("/^[a-zA-Z0-9]+$/", $title)){//установка по тому из каких символов должна состоять строка
+		$msg1 = "Имя файла может содержать цифры, и буквы латинского алфавита";
 	}
 	elseif(file_exists($fex)){//проверка существования файла
 		$msg1 = "Такой файл уже существует введите другое имя";
@@ -55,28 +55,27 @@ else{
 		<hr>
 	    <div class="newsForm">
 	    	<form method="post">
-           <p>
-	           <label for="newsName">Название файла:</label>
-	           <input type="text" name="title" id="newsName" value="<?=@$title;?>"><br>
-	           <span class="error"><?=@$msg1?></span>
-           </p>
-           <br>
-            <p>
-            	<label class="text" for="newsContent">Содержимое файла:</label>
-            	<textarea name="content" id="newsContent"><?=@$content;?></textarea><br>
-            	<span class="error"><?=@$msg?></span>
-            </p>
-            <br>
-            <p>
-            	<input type="submit" value="Сохранить"><br>
-            </p>
-	        
-	    </form>
-	    <hr>
+	           <p>
+		           <label for="newsName">Название файла:</label>
+		           <input type="text" name="title" id="newsName" value="<?=@$title;?>"><br>
+		           <span class="error"><?=@$msg1?></span>
+	           </p>
+	           <br>
+	            <p>
+	            	<label class="text" for="newsContent">Содержимое файла:</label>
+	            	<textarea name="content" id="newsContent"><?=@$content;?></textarea><br>
+	            	<span class="error"><?=@$msg?></span>
+	            </p>
+	            <br>
+	            <p>
+	            	<input type="submit" value="Сохранить"><br>
+	            </p>
+		    </form>
+		    <hr>
 	    </div>
 	    <hr>
 <!-- <?php
-	echo $msg . '<br>';
+	//echo $msg . '<br>';
 
 	// echo 'Количество символов в имени - ' . mb_strlen($title) . '<br>';
 	// echo 'Количество символов в содержании - ' . mb_strlen($content);
