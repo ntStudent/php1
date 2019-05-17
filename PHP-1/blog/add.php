@@ -10,7 +10,7 @@ if(count($_POST) > 0){
 	$content = trim($_POST['content']);
 	$content = strip_tags($content);
 	$content = htmlspecialchars($content,ENT_QUOTES);
-	$content = stripcslashes($content);
+	$content = stripslashes($content);
 	$fex = "data/$title";
 	/*
 	проверкa валидации 
@@ -29,7 +29,7 @@ if(count($_POST) > 0){
 		$msg = "Содержимое файла должно содержать больше символов";
 	}
 	else{
-		file_put_contents("data/$title", $content);
+		file_put_contents("data/$title.txt", $content);
 		header("Location: index.php");
 		exit();
 	}			
