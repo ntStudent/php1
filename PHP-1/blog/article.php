@@ -21,6 +21,9 @@
 	$fileName = trim($fileName);
 	$fileName = stripslashes($fileName);
 	$fileName = htmlspecialchars($fileName);
+
+	//видим что имя файла идет сразу с расширением
+	echo $fileName;
 	/*
 	проверки:
 	- $fileName != ''
@@ -29,17 +32,6 @@
 	- ../add.php - нельзя предоставлять доступ к верхнему уровню папок(полный запрет) можно использовать 'strpos', или добавить расширение файлам
 	*/
 
-	// ПРОВЕРКА С РАСШИРЕНИЕМ НЕ СРАБАТЫВАЕТ НАДО ДОДЕЛАТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-	// if($fileName != '' && file_exists("data/$fileName") && is_file("data/$fileName")){
-	// 	$fileContent = file_get_contents("data/$fileName"); 
-	// 	echo "<h1>$fileName</h1>";
-	// 	echo "<div>$fileContent</div>";
-	// }
-	// else{
-	// 	echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">404 - Нет такой страницы</div>";
-	// }
-
 	///получаем расширение файла - Работает следующим образом: strrchr() возвращает участок строки, следующий за указанным параметром (точкой в нашем случае), после чего substr() отрезает первый символ — точку.
 	function getExtension($fileName) {
     return substr(strrchr($fileName, '.'), 1);
@@ -47,6 +39,9 @@
 	//выводим расширение файла на экран
 	$gex = getExtension($fileName);
 	echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Расширение файла - \"$gex\"</div>";
+
+
+
 	if($fileName != ''){
 		
 		$fex1 = "data/$fileName";
@@ -61,7 +56,7 @@
 			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Этот файл нельзя открыть</div>";
 		}
 		else {
-		$fileContent = file_get_contents("data/$fileName"); 
+		$fileContent = file_get_contents($fex1); 
 		echo "<h1>$fileName</h1>";
 		echo "<div>$fileContent</div>";
 		}

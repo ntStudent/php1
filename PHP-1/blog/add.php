@@ -29,7 +29,7 @@ if(count($_POST) > 0){
 		$msg = "Содержимое файла должно содержать больше символов";
 	}
 	else{
-		file_put_contents("data/$title.txt", $content);
+		file_put_contents("$fex, $content);
 		header("Location: index.php");
 		exit();
 	}			
