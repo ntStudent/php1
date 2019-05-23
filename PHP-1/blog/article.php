@@ -40,16 +40,13 @@
 	// 	echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">404 - Нет такой страницы</div>";
 	// }
 
-	///получаем расширение файла
+	///получаем расширение файла - Работает следующим образом: strrchr() возвращает участок строки, следующий за указанным параметром (точкой в нашем случае), после чего substr() отрезает первый символ — точку.
 	function getExtension($fileName) {
     return substr(strrchr($fileName, '.'), 1);
 	}
 	//выводим расширение файла на экран
 	$gex = getExtension($fileName);
 	echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Расширение файла - \"$gex\"</div>";
-
-
-
 	if($fileName != ''){
 		
 		$fex1 = "data/$fileName";
@@ -60,7 +57,7 @@
 		elseif (!is_file($fex1)) {//проверка файл или папка
 			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Это не файл</div>";
 		}
-		elseif (getExtension($fileName) != 'txt') {//проверка файла на расширение
+		elseif (getExtension($fileName) != 'txt') {//проверка файла на расширение 
 			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Этот файл нельзя открыть</div>";
 		}
 		else {

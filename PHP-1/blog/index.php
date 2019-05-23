@@ -24,15 +24,7 @@
 		?>
 
 		<hr>
-<?php
-$filename = 'data/a111.txt';
 
-if (file_exists($filename)) {
-    echo "Файл $filename существует";
-} else {
-    echo "Файл $filename не существует";
-}
-?>
 		
 	</body>
 </html>
