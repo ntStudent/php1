@@ -11,7 +11,7 @@ if(count($_POST) > 0){
 	$content = strip_tags($content);
 	$content = htmlspecialchars($content,ENT_QUOTES);
 	$content = stripslashes($content);
-	$fex = "data/$title";
+	$fex = "data/$title.txt";
 	/*
 	проверкa валидации 
 	   1) полей*/ 
