@@ -4,6 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="shortcut icon" href="favicon.ico">
+		<title>course-php_lesson_1</title>
 	</head>
 	<body>
 		<a href="../../index.php">home</a>

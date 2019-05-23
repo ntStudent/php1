@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../../css/course_php-1_admin.css">
 		<link rel="shortcut icon" href="favicon.icoa">
+		<title>course-php_admin</title>
 	</head>
 	<body>
 		<a href="course_php_1-1.php">lesson № 1</a><hr>
