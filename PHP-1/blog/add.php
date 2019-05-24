@@ -1,21 +1,22 @@
 <?php
+//подключаем файл с функциями
+include_once ('functions.php');
 if(count($_POST) > 0){
 	//POST
 
-	$title = trim($_POST['title']);
-	$title = strip_tags($title);
-	$title = htmlspecialchars($title,ENT_QUOTES);
-	$title = stripcslashes($title);
+	$title = ($_POST['title']);
+	$content = ($_POST['content']);
 
-	$content = trim($_POST['content']);
-	$content = strip_tags($content);
-	$content = htmlspecialchars($content,ENT_QUOTES);
-	$content = stripslashes($content);
+	//прогоняем через функцию
+	$title = safe($title);
+	$content = safe($content);
+
 	$fex = "data/$title.txt";
 	/*
 	проверкa валидации 
 	   1) полей*/ 
 	// 2) (*)что такого файла еще нет
+	   
 	if ((mb_strlen($title) < 3)){//проверка длинны строки
 		$msg1 = "В имени файла должно быть больше чем три символа";
 	}
@@ -29,7 +30,7 @@ if(count($_POST) > 0){
 		$msg = "Содержимое файла должно содержать больше символов";
 	}
 	else{
-		file_put_contents("$fex, $content);
+		file_put_contents($fex, $content);
 		header("Location: index.php");
 		exit();
 	}			

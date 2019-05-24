@@ -17,13 +17,14 @@
 		<a href="add.php">add news</a>
 		<hr>
 <?php
+	include_once('functions.php');
+
 	$fileName = $_GET['fname'];
-	$fileName = trim($fileName);
-	$fileName = stripslashes($fileName);
-	$fileName = htmlspecialchars($fileName);
+	$fileName = safe($fileName);
 
 	//видим что имя файла идет сразу с расширением
 	echo $fileName;
+	
 	/*
 	проверки:
 	- $fileName != ''
@@ -32,15 +33,9 @@
 	- ../add.php - нельзя предоставлять доступ к верхнему уровню папок(полный запрет) можно использовать 'strpos', или добавить расширение файлам
 	*/
 
-	///получаем расширение файла - Работает следующим образом: strrchr() возвращает участок строки, следующий за указанным параметром (точкой в нашем случае), после чего substr() отрезает первый символ — точку.
-	function getExtension($fileName) {
-    return substr(strrchr($fileName, '.'), 1);
-	}
-	//выводим расширение файла на экран
+	//выводим расширение файла на экран используем функцию
 	$gex = getExtension($fileName);
 	echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Расширение файла - \"$gex\"</div>";
-
-
 
 	if($fileName != ''){
 		
@@ -57,7 +52,8 @@
 		}
 		else {
 		$fileContent = file_get_contents($fex1); 
-		echo "<h1>$fileName</h1>";
+		$fn = basename($fileName, ".txt");
+		echo "<h1>$fn</h1>";
 		echo "<div>$fileContent</div>";
 		}
 	}
