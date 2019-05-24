@@ -24,7 +24,7 @@
 
 	//видим что имя файла идет сразу с расширением
 	echo $fileName;
-	
+
 	/*
 	проверки:
 	- $fileName != ''
@@ -52,8 +52,12 @@
 		}
 		else {
 		$fileContent = file_get_contents($fex1); 
+
+		//убираем расширение txt
 		$fn = basename($fileName, ".txt");
+		//выводим имя статьи без расширения
 		echo "<h1>$fn</h1>";
+		//выводим содержание статьи
 		echo "<div>$fileContent</div>";
 		}
 	}
