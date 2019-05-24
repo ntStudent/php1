@@ -52,7 +52,6 @@
 		}
 		else {
 		$fileContent = file_get_contents($fex1); 
-
 		//убираем расширение txt
 		$fn = basename($fileName, ".txt");
 		//выводим имя статьи без расширения
@@ -64,6 +63,8 @@
 	else{
 		echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Нет параметра GET</div>";
 	}
+
+	 echo "<div style=\"font:bold 18px Arial; color:#bc0001; text-align:center;\"><h3><a href=\"edit.php?fname=$fileName\">Edit news</a></h3></div>";
 ?>
 	</body>
 </html>

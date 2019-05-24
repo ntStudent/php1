@@ -26,7 +26,7 @@
 	echo "<pre>";
 	print_r($_SERVER);
 	echo "</pre>";
-
+	date_default_timezone_set('Asia/Yekaterinburg');
 	// создаем строку массива для записи в файл
 	$info = [ 
 		date("Y-m-d H:i:s"),

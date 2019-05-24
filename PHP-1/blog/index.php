@@ -8,6 +8,8 @@
 	</head>
 	<body>
 		<a href="add.php">add news</a>
+		
+
 		<hr>
 		<div><h2>LIST NEWS</h2></div>
 		<HR>
