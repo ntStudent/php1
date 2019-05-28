@@ -23,7 +23,7 @@
 	$fileName = safe($fileName);
 
 	//видим что имя файла идет сразу с расширением
-	echo $fileName;
+	//echo $fileName;
 
 	/*
 	проверки:

@@ -6,15 +6,15 @@
 		//POST
 		$title = ($_POST['title']);
 		$content = ($_POST['content']);
-		echo $title;
+		echo "22222" . $title;
 		//прогоняем через функцию
 		$title = safe($title);
 		$content = safe($content);
 		$fex = "data/$title.txt";
-
 		// проверкa валидации 
 		//    1) полей
 		// 2) (*)что такого файла еще нет
+
 		if ((mb_strlen($title) < 3)){//проверка длинны строки
 			$msg1 = "В имени файла должно быть больше чем три символа";
 		}
@@ -34,7 +34,6 @@
 			exit();
 		}			
 	}
-
 	$fileName = $_GET['fname'];
 	$fileName = safe($fileName);
 	
@@ -59,8 +58,6 @@
 		// echo "<div>$fileContent</div>";
 		}	
 	}
-
-	
 ?>
 
 <!DOCTYPE html>

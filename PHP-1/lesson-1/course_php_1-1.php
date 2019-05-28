@@ -7,7 +7,7 @@
 		<title>course-php_lesson_1</title>
 	</head>
 	<body>
-		<a href="../../index.php">home</a>
+		<a href="../../../index.php">home</a>
 		<!-- здесь "referer" показывает откуда пришел пользователь -->
 		<!-- <a href="http://ntschool.ru" target="_blank">school11</a> -->
 		
