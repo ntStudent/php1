@@ -1,6 +1,7 @@
 <?php
 echo "<a href=\"discount.php\">discount</a> ";
 echo " <a href=\"session.php\">session</a>";
+echo " <a href=\"orderForm/form.php\">form</a>";
 echo "<hr align=\"left\" width=\"150px\"><br>";
 /*
 куки содержат
