@@ -12,7 +12,6 @@
 	function getExtension($fileName) {
     return substr(strrchr($fileName, '.'), 1);
 	}
-	
 // склоняет слово секунды
 	function endings ($m){
         $ost = $m % 10;

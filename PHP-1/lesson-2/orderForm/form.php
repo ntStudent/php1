@@ -1,3 +1,7 @@
+<a href="order.php">go to chat</a>
+<a href="../index.php">go to home</a>
+<hr align="left" width="150px">
+
 <?php
 session_start();
 
@@ -18,5 +22,3 @@ if ($_SESSION['name'] != '') {
 	echo "Здравствуйте, {$_SESSION['name']}!";
 }
 ?>
-<a href="order.php">go to chat</a>
-<a href="../index.php">go to home</a>

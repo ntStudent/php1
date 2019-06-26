@@ -53,7 +53,9 @@ else{
 	<body>
 		<a href="../course_php_1-1.php">home</a>
 		<a href="index.php">all news</a>
-		<hr>
+
+		<hr size="5px" height="5px" align="left" width="400px" color="gray">
+
 	    <div class="newsForm">
 	    	<form method="post">
 	           <p>
@@ -61,20 +63,24 @@ else{
 		           <input type="text" name="title" id="newsName" value="<?=@$title;?>"><br>
 		           <span class="error"><?=@$msg1?></span>
 	           </p>
+
 	           <br>
+
 	            <p>
 	            	<label class="text" for="newsContent">Содержимое файла:</label>
 	            	<textarea name="content" id="newsContent"><?=@$content;?></textarea><br>
 	            	<span class="error"><?=@$msg?></span>
 	            </p>
+
 	            <br>
+
 	            <p>
 	            	<input type="submit" value="Сохранить"><br>
 	            </p>
 		    </form>
-		    <hr>
+		    <hr align="left" width="400px" color="red">
 	    </div>
-	    <hr>
+	    <hr align="left" width="400px" color="red">
 <!-- <?php
 	//echo $msg . '<br>';
 

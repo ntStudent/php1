@@ -29,11 +29,11 @@ label{
 input{
     width: 150px;
 }
-textarea{
+/*textarea{
+    width: 400px;
+    height: 100px;
+}*/
+textarea, textarea#Content{
     width: 150px;
     height: 50px;
-}
-textarea#Content{
-    width: 900px;
-    height: 200px;
 }

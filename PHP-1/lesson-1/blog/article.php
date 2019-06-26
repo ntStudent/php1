@@ -35,36 +35,39 @@
 
 	//выводим расширение файла на экран используем функцию
 	$gex = getExtension($fileName);
-	echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Расширение файла - \"$gex\"</div>";
+	//echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Расширение файла - \"$gex\"</div>";
 
 	if($fileName != ''){
 		
 		$fex1 = "data/$fileName";
+		echo $fex1;
 
 		if(!file_exists($fex1)){//проверка существует ли файл
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Нет такого файла</div>";
+			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы не можете открыть файл с таким именем</div>";
 		}
 		elseif (!is_file($fex1)) {//проверка файл или папка
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Это не файл</div>";
+			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы хотите открыть не файл это запрещено</div>";
 		}
-		elseif (getExtension($fileName) != 'txt') {//проверка файла на расширение 
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Этот файл нельзя открыть</div>";
+		elseif ($gex != 'txt') {//проверка файла на расширение 
+			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">У вас нет доступа для открытия этого файла</div>";
 		}
 		else {
 		$fileContent = file_get_contents($fex1); 
 		//убираем расширение txt
-		$fn = basename($fileName, ".txt");
+		$fn = basename($fileName,"." . $gex);
 		//выводим имя статьи без расширения
 		echo "<h1>$fn</h1>";
 		//выводим содержание статьи
 		echo "<div>$fileContent</div>";
+
+		echo "<div style=\"font:bold 18px Arial; color:#bc0001; text-align:center;\"><h3><a href=\"edit.php?fname=$fileName\">Edit news</a></h3></div>";
 		}
 	}
 	else{
 		echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Нет параметра GET</div>";
 	}
 
-	 echo "<div style=\"font:bold 18px Arial; color:#bc0001; text-align:center;\"><h3><a href=\"edit.php?fname=$fileName\">Edit news</a></h3></div>";
+	 
 ?>
 	</body>
 </html>
