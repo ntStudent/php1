@@ -1,23 +1,4 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['auth']) && ($_COOKIE['log'] != $_SESSION['slog']) && ($_COOKIE['pass'] != $_SESSION['spass'])) {
-	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p><a href=\"index.php\">Назад</a></div>";
-	header('Location: login.php');
-	exit();	
-}
-else{
-	unset($_SESSION['error']);
-}
-?>
-
-<a href="login.php">Выйти</a>
-<a href="index.php">home</a>
-<a href="add.php">add</a>
-<a href="listNews.php">listNews</a>
-
-
-<?php
 // error_reporting(E_ALL); так настроено по умолчанию показывает все ошибки
 // error_reporting(E_ALL ^ E_NOTICE); так не показываются нотайсы
 ?>
@@ -32,7 +13,7 @@ else{
 		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
-		<a href="listNews.php">all news</a>
+		<a href="index.php">all news</a>
 		<a href="add.php">add news</a>
 		<hr>
 <?php
@@ -62,16 +43,13 @@ else{
 		echo $fex1;
 
 		if(!file_exists($fex1)){//проверка существует ли файл
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы не можете открыть файл с таким именем</div><br><br>";
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><a href=\"listNews.php\">Назад</a></div>";
+			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы не можете открыть файл с таким именем</div>";
 		}
 		elseif (!is_file($fex1)) {//проверка файл или папка
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы хотите открыть не файл это запрещено</div><br><br>";
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><a href=\"listNews.php\">Назад</a></div>";
+			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы хотите открыть не файл это запрещено</div>";
 		}
 		elseif ($gex != 'txt') {//проверка файла на расширение 
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">У вас нет доступа для открытия этого файла</div><br><br>";
-			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><a href=\"listNews.php\">Назад</a></div>";
+			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">У вас нет доступа для открытия этого файла</div>";
 		}
 		else {
 		$fileContent = file_get_contents($fex1); 

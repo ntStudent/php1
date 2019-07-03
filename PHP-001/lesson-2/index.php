@@ -23,8 +23,8 @@ echo $set . endings($set);
 //setcookie(); - создаем куки
 //setcookie('name', 'value', 'time');
 // задать можно три параметра: имя, значение, время(срок истечения)
-setcookie('name', 'Vadim', time() + 3600 * 24 * 7);
-setcookie('parole', '8394kdjflskjhdfsflksdjskj', time() + 3600 * 24 * 30);
+setcookie('login', 'admin', time() + 3600 * 24 * 7);
+setcookie('pass', '8394kdjflskjhdfsflksdjskj', time() + 3600 * 24 * 30);
 
 //Все куки хранятся в массиве $_COOKIE
 

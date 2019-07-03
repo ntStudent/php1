@@ -14,7 +14,7 @@
 		<!-- а здесь не показывает, проходит через "go.php" -->
 		<a href="go.php?c=http://ntschool.ru" target="_blank">school</a>
 		<a href="course_php_1_admin.php">admin</a>
-		<a href="blog/index.php">my blog</a>
+		<a href="blog/add.php">blog_add</a>
 		<div>
 			<p>выводим массив сервера print_r($_SERVER) в тегах pre через echo</p>
 		</div>

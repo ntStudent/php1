@@ -1,22 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['auth']) && ($_COOKIE['log'] != $_SESSION['slog']) && ($_COOKIE['pass'] != $_SESSION['spass'])) {
-	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p><a href=\"index.php\">Назад</a></div>";
-	header('Location: login.php');
-	exit();	
-}
-else{
-	unset($_SESSION['error']);
-}
-?>
-
-<a href="login.php">Выйти</a>
-<a href="index.php">home</a>
-<a href="add.php">add</a>
-<a href="listNews.php">listNews</a>
-
-
 
 <?php 
 	include_once('functions.php');
@@ -91,7 +72,7 @@ else{
 	</head>
 	<body>
 		<a href="../course_php_1-1.php">home</a>
-		<a href="listNews.php">all news</a>
+		<a href="index.php">all news</a>
 		<hr>
 		
 
