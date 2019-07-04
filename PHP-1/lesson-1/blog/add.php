@@ -1,54 +1,54 @@
 <?php
 session_start();
+//подключаем файл с функциями
 include_once('../../function/functions.php');
 #########################################
-if(!auth()){
+// с помощью подключенной функции проверяем авторизацию
+if(!is_auth()){
+	
+	// устанавливаем элемент 'error' для вывода сообщения если авторизация не пройдена
 	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p></div>";
+
+	// устанавливаем элемент 'back' для возвращения на эту страницу после авторизации 
 	$_SESSION['back'] = 'add.php';
+
+	//если авторизация не пройдена перекидывает на эту страницу
 	header('Location: login.php');
-	exit();
-		
+	exit();		
 }
 else{
+	// уничтожаем элемент 'error' если авторизация пройдена
 	unset($_SESSION['error']);
 }
 ##########################################
-?>
-
-<a href="index.php">Exit</a>
-<a href="listNews.php">List news</a>
-
-
-
-<?php
-//подключаем файл с функциями
-include_once ('../../function/functions.php');
 if(count($_POST) > 0){
 	//POST
-
 	$title = ($_POST['title']);
 	$content = ($_POST['content']);
 
 	//прогоняем через функцию
 	$title = safe($title);
 	$content = safe($content);
-
 	$fex = "data/$title.txt";
-	/*
-	проверкa валидации 
-	   1) полей*/ 
+
+	//проверкa валидации 
+	// 1) полей
 	// 2) (*)что такого файла еще нет
 
-	if ((mb_strlen($title) < 3)){//проверка длинны строки
+	//проверка длинны строки
+	if ((mb_strlen($title) < 3)){
 		$msg1 = "В имени файла должно быть больше чем три символа";
 	}
-	elseif(!preg_match("/^[a-zA-Z0-9]+$/", $title)){//установка по тому из каких символов должна состоять строка
+	//установка по тому из каких символов должна состоять строка
+	elseif(!preg_match("/^[a-zA-Z0-9]+$/", $title)){
 		$msg1 = "Имя файла может содержать цифры, и буквы латинского алфавита";
 	}
-	elseif(file_exists($fex)){//проверка существования файла
+	//проверка существования файла
+	elseif(file_exists($fex)){
 		$msg1 = "Такой файл уже существует введите другое имя";
 	}
-	elseif (mb_strlen($content) < 4){//проверка длинны строки содержания файла
+	//проверка длинны строки содержания файла
+	elseif (mb_strlen($content) < 4){
 		$msg = "Содержимое файла должно содержать больше символов";
 	}
 	else{
@@ -59,8 +59,7 @@ if(count($_POST) > 0){
 }
 else{
 	//GET
-}
-	
+}	
 ?>
 
 
@@ -74,7 +73,8 @@ else{
 	</head>
 	<body>
 		<!-- <a href="../course_php_1-1.php">home</a> -->
-		
+		<a href="index.php">Exit</a>
+		<a href="listNews.php">List news</a>
 
 		<hr size="5px" height="5px" align="left" width="400px" color="gray">
 
@@ -102,12 +102,13 @@ else{
 		    </form>
 		    <hr align="left" width="400px" color="red">
 	    </div>
+	    
 	    <hr align="left" width="400px" color="red">
-<!-- <?php
-	//echo $msg . '<br>';
+		<!-- <?php
+			//echo $msg . '<br>';
 
-	// echo 'Количество символов в имени - ' . mb_strlen($title) . '<br>';
-	// echo 'Количество символов в содержании - ' . mb_strlen($content);
-?> -->
+			// echo 'Количество символов в имени - ' . mb_strlen($title) . '<br>';
+			// echo 'Количество символов в содержании - ' . mb_strlen($content);
+		?> -->
 	</body>
 </html>

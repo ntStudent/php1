@@ -4,7 +4,7 @@
 <?php 
 error_reporting(E_ALL ^ E_NOTICE);
 //проверяем сессию и куки
-function auth(){
+function is_auth(){
     if (!isset($_SESSION['auth'])) {
         if ($_COOKIE['log'] == 'admin' && $_COOKIE['pass'] == md5('qwerty')){
             $_SESSION['auth'] == true;

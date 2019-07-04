@@ -3,7 +3,7 @@ session_start();
 include_once('../../function/functions.php');
 
 #########################################
-if(!auth()){
+if(!is_auth()){
 	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p></div>";
 	header('Location: listNews.php');
 	exit();		
@@ -12,10 +12,6 @@ else{
 	unset($_SESSION['error']);
 }
 ##########################################
-?>
-
-<?php 
-	include_once('../../function/functions.php');
 
 	if(count($_POST) > 0){
 		//POST
@@ -71,7 +67,6 @@ else{
 			exit();
 	    }	
 	}
-
 
 	$fileName = $_GET['fname'];
 	$fileName = safe($fileName);
