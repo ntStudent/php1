@@ -2,6 +2,20 @@
 
 
 <?php 
+error_reporting(E_ALL ^ E_NOTICE);
+//проверяем сессию и куки
+function auth(){
+    if (!isset($_SESSION['auth'])) {
+        if ($_COOKIE['log'] == 'admin' && $_COOKIE['pass'] == md5('qwerty')){
+            $_SESSION['auth'] == true;
+        }
+        else{
+            return false;
+        }
+    }
+    return true;
+}
+
 // проверки для заполнения полей
 	function safe($val) {
 		$val = trim($val);
@@ -13,13 +27,12 @@
 
 	///получаем расширение файла - Работает следующим образом: strrchr() возвращает участок строки, следующий за указанным параметром (точкой в нашем случае), после чего substr() отрезает первый символ — точку.
 	function getExtension($fileName) {
-    return substr(strrchr($fileName, '.'), 1);
-	}
+        return substr(strrchr($fileName, '.'), 1);
+    }
 	
 // склоняет слово секунды
 	function endings ($m){
         $ost = $m % 10;
-
         if ($m >= 5 && $m <= 20){
             $res = ' - секунд';
         }
@@ -32,7 +45,6 @@
         else {
             $res = ' - секунд';
         }
-
         return ($res);
     }
 

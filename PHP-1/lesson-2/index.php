@@ -1,5 +1,5 @@
 <?php
-include_once('functions.php');
+include_once('../function/functions.php');
 echo "<a href=\"../../../index.php\">home</a> ";
 echo "<a href=\"discount.php\">discount</a> ";
 echo " <a href=\"session.php\">session</a>";

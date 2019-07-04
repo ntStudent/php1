@@ -1,29 +1,28 @@
 <?php
 session_start();
-date_default_timezone_set('Asia/Yekaterinburg');
-// if (!isset($_SESSION['auth']) && ($_POST['login'] == $_COOKIE['log']) && ($_COOKIE['pass'] == $_POST['password'])) {
-// 	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Авторизуйтесь</div>";
-// 	header('Location: login.php');
-// 	exit();
-// }
-if (!isset($_SESSION['auth']) && ($_COOKIE['log'] != $_SESSION['slog']) && ($_COOKIE['pass'] != $_SESSION['spass'])) {
-	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p><a href=\"index.php\">Назад</a></div>";
+include_once('../../function/functions.php');
+#########################################
+if(!auth()){
+	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p></div>";
+	$_SESSION['back'] = 'add.php';
 	header('Location: login.php');
-	exit();	
+	exit();
+		
 }
 else{
 	unset($_SESSION['error']);
 }
+##########################################
 ?>
-<a href="login.php">Выйти</a>
-<a href="index.php">home</a>
-<a href="listNews.php">listNews</a>
+
+<a href="index.php">Exit</a>
+<a href="listNews.php">List news</a>
 
 
 
 <?php
 //подключаем файл с функциями
-include_once ('functions.php');
+include_once ('../../function/functions.php');
 if(count($_POST) > 0){
 	//POST
 

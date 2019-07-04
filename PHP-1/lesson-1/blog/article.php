@@ -1,20 +1,42 @@
 <?php
 session_start();
+include_once('../../function/functions.php');
+$_SESSION['back'] = 'article.php' . '?fname=' . $_GET['fname'];
+$auth = auth();
+error_reporting(E_ALL ^ E_NOTICE);
+#########################################
+// if (!isset($_SESSION['auth'])) {
+// 	if ($_COOKIE['log'] == 'admin' && $_COOKIE['pass'] == md5('qwerty')){
+// 		$_SESSION['auth'] == true;
+// 	}
+// 	else {
+// 		$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p><a href=\"index.php\">Назад</a></div>";
+// 		header('Location: login.php');
+// 		exit();
+// 	}	
+// }
+// else{
+// 	unset($_SESSION['error']);
+// }
+##########################################
+// if(!auth()){
+// 	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p><a href=\"index.php\">Назад</a></div>";
+// 	header('Location: listNews.php');
+// 	exit();		
+// }
+// else{
+// 	unset($_SESSION['error']);
+// }
+##########################################
 
-if (!isset($_SESSION['auth']) && ($_COOKIE['log'] != $_SESSION['slog']) && ($_COOKIE['pass'] != $_SESSION['spass'])) {
-	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p><a href=\"index.php\">Назад</a></div>";
-	header('Location: login.php');
-	exit();	
+if (!$auth){
+	echo "<a href=\"login.php\">login</a>";
 }
-else{
-	unset($_SESSION['error']);
-}
+			
 ?>
 
-<a href="login.php">Выйти</a>
-<a href="index.php">home</a>
-<a href="add.php">add</a>
-<a href="listNews.php">listNews</a>
+
+
 
 
 <?php
@@ -32,14 +54,19 @@ else{
 		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
-		<a href="listNews.php">all news</a>
-		<a href="add.php">add news</a>
+		<a href="index.php">Exit</a>
+		<a href="listNews.php">List news</a>
+		<a href="add.php">Add news</a>
+		
 		<hr>
 <?php
-	include_once('functions.php');
+
+	include_once('../../function/functions.php');
+	error_reporting(E_ALL ^ E_NOTICE);
 
 	$fileName = $_GET['fname'];
 	$fileName = safe($fileName);
+	$auth = auth();
 
 	//видим что имя файла идет сразу с расширением
 	//echo $fileName;
@@ -59,7 +86,7 @@ else{
 	if($fileName != ''){
 		
 		$fex1 = "data/$fileName";
-		echo $fex1;
+		//echo $fex1;
 
 		if(!file_exists($fex1)){//проверка существует ли файл
 			echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Вы не можете открыть файл с таким именем</div><br><br>";
@@ -82,7 +109,9 @@ else{
 		//выводим содержание статьи
 		echo "<div>$fileContent</div>";
 
-		echo "<div style=\"font:bold 18px Arial; color:#bc0001; text-align:center;\"><h3><a href=\"edit.php?fname=$fileName\">Edit news</a></h3></div>";
+		if ($auth) {
+			echo "<div style=\"font:bold 18px Arial; color:#bc0001; text-align:center;\"><h3><a href=\"edit.php?fname=$fileName\">Edit news</a></h3></div>";
+		}
 		}
 	}
 	else{

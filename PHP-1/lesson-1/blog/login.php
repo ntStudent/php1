@@ -1,35 +1,45 @@
 
 
-<a href="index.php">home</a>
-<a href="add.php">add</a>
-<a href="listNews.php">listNews</a>
+<title>Login</title>
+<link rel="shortcut icon" href="../favicon.ico">
+<!-- <link rel="stylesheet" href="css/add.css"> -->
+<a href="index.php">Home</a>
 
 <hr>
 <?php
 session_start();
-date_default_timezone_set('Asia/Yekaterinburg');
+//echo md5('fffffff1111114444444');
 if (count($_POST) > 0) {
-	$_SESSION['slog'] = $_POST['login'];
-	$_SESSION['spass'] = $_POST['password'];
-	if ($_POST['login'] == 'admin' && $_POST['password'] == 'qwerty') {
+	if ($_POST['login'] == 'admin' && md5($_POST['password']) == md5('qwerty')) {
 		$_SESSION['auth'] = true;
-		//если стоит галочка 
+		//если стоит галочка ## так как если чекбокс не отмечен галочкой то информация не уходит на
+		// сервер поэтому достаточно проверить существует ли информация по этой галочке то есть 
+		// if (isset($_POST['remember']));
 		//ставим куку log pass
 		if ($_POST['remember'] == 'on') {
-		setcookie('log', 'admin', time() + 360);
-		setcookie('pass', 'qwerty', time() + 360);	
+			setcookie('log', 'admin', time() + 360);
+			setcookie('pass', md5('qwerty'), time() + 360);	
 		}
-		header('Location: listNews.php');
-		exit();
+		if (isset($_SESSION['back'])) {
+			header('Location: '.$_SESSION['back']);
+			exit();
+		}
+		else{
+			header('Location: listNews.php');
+			exit();
+		}
+		
 	}
 	else{
-		$_SESSION['error1'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Логин или Пароль неверно</div>";
-		echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><a href=\"index.php\">Назад</a></div>";
+		$_SESSION['error1'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Логин или Пароль неверны</div>";
+		
 	}
 }
 else{
 	unset($_SESSION['auth']);
 	unset($_SESSION['error1']);
+	setcookie('log', 'admin', time() - 1);
+    setcookie('pass', 'qwerty', time() - 1);
 }
 ?>
 
