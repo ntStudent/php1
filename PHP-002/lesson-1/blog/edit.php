@@ -18,18 +18,11 @@ else{
 		$title = ($_POST['title']);
 		$content = ($_POST['content']);
 		$fileName = $_GET['fname'];
-		$fileName = $_GET['fname'];
-
-	
 		
 		//прогоняем через функцию
 		$title = safe($title);
 		$content = safe($content);
-		$fileName = safe($fileName);
-        echo "<br>";
-		echo $title . "<br>";
-		echo "$title.txt <br>";
-		echo $fileName . "<br>";
+        
         //путь к файлу присваиваем переменной
 		$fex = "data/$title.txt";
 		
@@ -47,28 +40,20 @@ else{
 			$msg = "Содержимое файла должно содержать больше символов";
 		}
 		elseif("$title.txt"!= $fileName){//сравниваем имя файла в строке($_POST) и имя файла которое было($_GET)
-			// if (file_exists($fex)){//проверка существования файла
-		 // 	   $msg1 = "Такой файл уже существует введите другое имя";
-		 // 	}
-		 	if (isset($_POST['save'])){
-		 		if (file_exists($fex)){//проверка существования файла
+			if (file_exists($fex)){//проверка существования файла
 		 	   $msg1 = "Такой файл уже существует введите другое имя";
-		 		}
-		 		else{
-		 			//rename("data/$fileName, data/$title");
-					unlink("data/$fileName");
-					file_put_contents($fex, $content);
-					header("Location: listNews.php");
-					exit();
-		 		}
+		 	}
+		 	elseif (isset($_POST['save'])){
+				//rename("data/$fileName, data/$title");
+				unlink("data/$fileName");
+				file_put_contents($fex, $content);
+				header("Location: listNews.php");
+				exit();
 		    }
 		    elseif (isset($_POST['delete'])) {
-		    	if (file_exists($fex)){//проверка существования файла
-		 	   $msg1 = "Вы не можете удалить другой файл введите имя открытого файла";
-		 		}
-		  //   	unlink("data/$fileName");
-		  //   	header("Location: listNews.php");
-				// exit();
+		    	unlink("data/$fileName");
+		    	header("Location: listNews.php");
+				exit();
 		    }
 		}
 		elseif (isset($_POST['save'])){
@@ -83,9 +68,9 @@ else{
 	    }	
 	}
 
-	
 	$fileName = $_GET['fname'];
 	$fileName = safe($fileName);
+	
 	if($fileName != ''){
 		$fex1 = "data/$fileName";
 		if(!file_exists($fex1)){//проверка существует ли файл

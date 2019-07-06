@@ -2,39 +2,20 @@
 
 
 <?php 
-//error_reporting(E_ALL ^ E_NOTICE);
-#####################################################################
+error_reporting(E_ALL ^ E_NOTICE);
 //проверяем сессию и куки
 function is_auth(){
     if (!isset($_SESSION['auth'])) {
-        if (isset($_COOKIE['log']) && isset($_COOKIE['pass']) && $_COOKIE['log'] == 'admin' && $_COOKIE['pass'] == md5('qwerty')){
+        if ($_COOKIE['log'] == 'admin' && $_COOKIE['pass'] == md5('qwerty')){
             $_SESSION['auth'] == true;
-            
         }
         else{
             return false;
         }
-    }  
+    }
     return true;
 }
 
-
-//или такой вариант
-// function is_auth(){
-//     if (!isset($_SESSION['auth'])) {
-//         if (isset($_COOKIE['log']) && isset($_COOKIE['pass']) && $_COOKIE['log'] == 'admin' && $_COOKIE['pass'] == md5('qwerty')){
-//             $_SESSION['auth'] == true;
-//             return true;
-//         }
-//         else{
-//             return false;
-//         }
-//     }else{
-//         return true;
-//     }
-    
-// }
-####################################################################
 // проверки для заполнения полей
 	function safe($val) {
 		$val = trim($val);
