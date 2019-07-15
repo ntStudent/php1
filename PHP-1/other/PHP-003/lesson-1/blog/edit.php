@@ -66,6 +66,9 @@ else{
 		    	if (file_exists($fex)){//проверка существования файла
 		 	   $msg1 = "Вы не можете удалить другой файл введите имя открытого файла";
 		 		}
+		  //   	unlink("data/$fileName");
+		  //   	header("Location: listNews.php");
+				// exit();
 		    }
 		}
 		elseif (isset($_POST['save'])){
