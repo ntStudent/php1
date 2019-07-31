@@ -3,7 +3,7 @@
 
 <?php 
 
-// Подключаем базу данных
+// Подключаем базу данных php1
 function connect_db(){
     $db = new PDO('mysql:host=localhost;dbname=php1', 'root', '');// для MAMP ВСЕ root
     $db ->exec("SET NAMES UTF8");

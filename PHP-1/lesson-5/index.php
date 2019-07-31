@@ -8,3 +8,4 @@ unset($_SESSION['don']);
 ?>
 <a href="dbSQLadd.php">add article</a>
 <a href="listNews.php">Loock all articles</a>
+<a href="blog/addDb.php">addDb</a>
