@@ -1,6 +1,7 @@
 body{
-font:14px Arial,Verdana,sans-serif;
-background:lightgrey;}
+    font:14px Arial,Verdana,sans-serif;
+    background:lightgrey;
+}
 .error {
     color: #bc0000;
     font: bold 14px "Open Sans Condensed",Arial,Verdana,sans-serif;

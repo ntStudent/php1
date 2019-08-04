@@ -8,11 +8,13 @@ $db = connect_db();
 if (count($_POST) > 0) {
 	$name = ($_POST['name']);
 	$pass = ($_POST['password']);
+	$pass_to = ($_POST['password_too']);
 	//$lg = ($_POST['lang']);
 
 	//прогоняем через функцию
 	$name = safe($name);
 	$pass = safe($pass);
+	$pass_to = safe($pass_to);
 	//$lg = safe($lg); 
 	//$fex = "data/$title.txt";
 
@@ -25,8 +27,8 @@ if (count($_POST) > 0) {
 		$msg1 = "В имени  должно быть больше чем три символа";
 	}
 	//установка по тому из каких символов должна состоять строка
-	elseif(!preg_match("/^[a-zA-Z0-9]+$/", $name)){
-		$msg1 = "Имя  может содержать цифры, и буквы латинского алфавита";
+	elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё]/", $name)){
+		$msg1 = "Имя  может содержать цифры, и буквы";
 	}
 	//проверка существования файла
 	// elseif(file_exists($fex)){
@@ -34,14 +36,21 @@ if (count($_POST) > 0) {
 	// }
 	//проверка длинны строки содержания файла
 	elseif (mb_strlen($pass) < 8){
-		$msg = "Содержимое должно содержать больше символов";
+		$msg = "Пароль должен содержать не менее 8 символов";
+	}
+	elseif(!preg_match("/[0-9a-zA-Z]/", $pass)){
+		$msg = "Имя  может содержать цифры, и буквы латинского алфавита";
+	}
+	elseif ($pass != $pass_to){
+		$msg = "Пароль и повтор пароля должны совпадать";
 	}
 	else{
-		$sql = "INSERT INTO users (login, password) VALUES('$name', '$pass')";
+		$sql = "INSERT INTO users (log_in, pass_word) VALUES(:l, :p)";
+		$params = ['l' => $name, 'p' => $pass];
 		//$sql = "INSERT INTO articles SET title='$name', content='$text', lang='$lg'";
 		//Добавляем физически строку в базу данных двумя нижними строками
 		$query = $db->prepare($sql);// подготавливаем
-		$query->execute();//Выполняем запрос
+		$query->execute($params);//Выполняем запрос
 		//$_SESSION['don'] = 'Данные успешно добавлены в базу данных';
 
 		//ПРОВЕРКА ОТПРАВКИ ЗАПРОСА В БАЗУ ДАННЫХ
@@ -53,7 +62,7 @@ if (count($_POST) > 0) {
 			die();
 			//exit();
 		}
-		header("Location: index.php");
+		header("Location: login.php");
 		exit();
 	}	
 }
@@ -93,28 +102,44 @@ else
 // }
 ?>
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Register</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="stylesheet" href="../css/add.css">
+</head>
+<body>
+	<a href="index.php">Home</a>
+	<hr size="5px" height="5px" align="left" width="450px" color="gray">
+	<div style="font:bold 18px Arial; color:#bc0001; text-align:center;"><h3>Зарегистрируйтесь</h3></div>
+	
+	<form method="POST">
+		<!-- <p>
+			<span class="error"><?=@$_SESSION['error']?></span>
+			<span class="error"><?=@$_SESSION['error1']?></span>
+		</p> -->
+		<p>
+	       <label for="newsName">Name:</label>
+	       <input type="text" name="name" id="newsName" value="<?=@$name;?>"><br>
+	       <span class="error"><?=@$msg1?></span>
+	   </p>
+	   <br><br>
+		<p>
+			<label class="text" for="Password_one">Password:</label>
+			<input type="text" name="password" id="Password_one" value="<?=@$pass;?>"><br>
+			<span class="error"><?=@$msg?></span>
+		</p>
+		<p>
+			<label class="text" for="Password_to_one">Password replay:</label>
+			<input type="text" name="password_too" id="Password_to_one" value="<?=@$pass_to;?>"><br>
+			<span class="error"><?=@$msg?></span>
+		</p>
+		<!-- <input type="checkbox" name="remember" value="on">Запомнить меня <br><br> -->
+		<input type="submit" value="Войти">
+	</form>
+</body>
+</html>
 
-<title>Rigister</title>
-<link rel="shortcut icon" href="../favicon.ico">
-<!-- <link rel="stylesheet" href="css/add.css"> -->
-<a href="index.php">Home</a>
-<hr>
-<form method="POST">
-	<!-- <p>
-		<span class="error"><?=@$_SESSION['error']?></span>
-		<span class="error"><?=@$_SESSION['error1']?></span>
-	</p> -->
-	<p>
-       <label for="newsName">Name:</label>
-       <input type="text" name="name" id="newsName" value="<?=@$name;?>"><br>
-       <span class="error"><?=@$msg1?></span>
-   </p>
-   <br><br>
-	<p>
-		<label class="text" for="newsContent">Password:</label>
-		<input type="password" name="password" id="newsContent" value="<?=@$pass;?>"><br>
-		<span class="error"><?=@$msg?></span>
-	</p>
-	<!-- <input type="checkbox" name="remember" value="on">Запомнить меня <br><br> -->
-	<input type="submit" value="Войти">
-</form>
+
+

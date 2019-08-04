@@ -68,6 +68,7 @@ else{
 		 		}
 		    }
 		}
+		
 		elseif (isset($_POST['save'])){
 			file_put_contents($fex, $content);
 			header("Location: listNews.php");

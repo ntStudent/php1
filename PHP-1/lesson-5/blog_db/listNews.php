@@ -5,17 +5,21 @@ include_once('../../function/functions.php');
 	error_reporting(E_ALL ^ E_NOTICE);
 	unset($_SESSION['don']);
 
-	$db = new PDO('mysql:host=localhost;dbname=php1', 'root', '');
-	$db ->exec("SET NAMES UTF8");
+	$db = connect_db();
+	$fex = 'data/error.log';
+	$dtr = date('Y.m.d - H:i:s');
 //WHERE is_moderate='0'    WHERE lang='english'   ORDER BY dt_reg DESC
-	 $query = $db->prepare("SELECT dt_reg, title, content FROM articles  ");
+	 $query = $db->prepare("SELECT dt_reg, title, content FROM articles");
 	 $query->execute();
 
 	 if($query->errorCode() != PDO::ERR_NONE){
-	 	$info = $query->errorInfo();
-			echo implode('<br>', $info);
-			die();
-	 }
+		$info = $query->errorInfo();
+		// Создаем лог файл ошибок добавить дату
+		echo 'ошибка <br>';
+		echo "<a href=\"index.php\">Back</a>";
+		file_put_contents($fex, $dtr . " > " . implode('@', $info) . "\n", FILE_APPEND);
+		exit();
+	}
 
 	 $comments = $query->fetchAll();
 	
@@ -28,7 +32,16 @@ include_once('../../function/functions.php');
 
 	<title>listNews</title>
 	<link rel="stylesheet" type="text/css" href="../css/add.css">
-	<a href="index.php">back to home</a>
+	<a href="index.php"> home </a>
+	<?php if(is_auth_db()){
+		echo " <a href=\" add.php \"> add news </a> ";
+	}
+	else{
+		echo "<a href=\"login.php\">login</a> ";
+		echo " <a href=\"register.php\">register</a>";
+	}
+
+	?>
 	<br>
 
 <!-- <div class="comments">

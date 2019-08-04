@@ -3,6 +3,22 @@
 
 <?php 
 
+
+#####################################################################
+//проверяем сессию и куки для базы данных
+function is_auth_db(){
+    if (!isset($_SESSION['auth_db'])) {
+        if (isset($_COOKIE['log']) && isset($_COOKIE['pass']) && $_COOKIE['log'] == $key['log_in'] && $_COOKIE['pass'] == md5($key['pass_word'])){
+            $_SESSION['auth_db'] == true;
+            
+        }
+        else{
+            return false;
+        }
+    }  
+    return true;
+}
+
 // Подключаем базу данных php1
 function connect_db(){
     $db = new PDO('mysql:host=localhost;dbname=php1', 'root', '');// для MAMP ВСЕ root
