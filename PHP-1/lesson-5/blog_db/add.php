@@ -2,30 +2,25 @@
 session_start();
 include_once('../../function/functions.php');
 error_reporting(E_ALL ^ E_NOTICE);
+date_default_timezone_set('Asia/Yekaterinburg');
 
 $db = connect_db();
-// $stmt = $dbh->prepare('SELECT EXISTS(SELECT 1 FROM articles WHERE title =:name LIMIT 1)');
-// $stmt->bindValue(':title', $name, PDO::PARAM_INT);
-// $stmt->execute();
 #########################################
 // с помощью подключенной функции проверяем авторизацию
 if(!is_auth()){
-	
 	// устанавливаем элемент 'error' для вывода сообщения если авторизация не пройдена
 	$_SESSION['error'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p></div>";
-
 	// устанавливаем элемент 'back' для возвращения на эту страницу после авторизации 
 	$_SESSION['back'] = 'add.php';
-
 	//если авторизация не пройдена перекидывает на эту страницу
 	header('Location: login.php');
 	exit();		
 }
-// else{
-// 	// уничтожаем элемент 'error' если авторизация пройдена
-// 	unset($_SESSION['error']);
-// }
-unset($_SESSION['error']);
+else{
+	// уничтожаем элемент 'error' если авторизация пройдена
+	unset($_SESSION['error']);
+}
+
 ##########################################
 if(count($_POST) > 0){
 	//POST
@@ -37,8 +32,8 @@ if(count($_POST) > 0){
 	$name = safe($name);
 	$text = safe($text);
 	$lg = safe($lg); 
-	
-	//$fex = "data/$title.txt";
+	$fex = "data/error.log";
+	$dt_er_log = date('Y.m.d - H:i:s');
 
 	//проверкa валидации 
 	// 1) полей
@@ -46,71 +41,57 @@ if(count($_POST) > 0){
 
 #############################################################################################
 //Проверка на уникальность
-	$sql = "SELECT * FROM articles WHERE title = 'name'";
-	$query = $db->prepare(sql);
+	$query = $db->prepare("SELECT * FROM articles WHERE title = 'name'");
 	$query->execute();
-
-	//так как имя статьи уникальное и может быть только одно такое имя то можго использовать просто - fetch - , виесто fetchAll.
+	// if($query->errorCode() != PDO::ERR_NONE){
+	// 	$info = $query->errorInfo();
+	// 	 echo 'ошибка2<br>';
+	// 	 file_put_contents($fex, $dt_er_log . " - " . implode('@', $info) . "\n", FILE_APPEND);
+	// 	 exit();
+	// }
+//так как имя статьи уникальное и может быть только одно такое имя то можго использовать просто - fetch - , вместо fetchAll.
 	$count = $query->fetch();
-
-	if (!$count){
-		//такого имени нет можно создавать такую статью
+	if($count){
+	 	$msg1 = " введите другое имя";
 	}
-	else{
-		//такое имя есть в базе нужно поменять имя
-	}
-
 	#############################################################################################
-
-	//проверка длинны строки
-	if ((mb_strlen($name) < 3)){
+		//проверка длинны строки
+	elseif ((mb_strlen($name) < 3)){
 		$msg1 = "В имени  должно быть больше чем три символа";
 	}
 	//установка по тому из каких символов должна состоять строка
-	// elseif(!preg_match('/[^0-9a-zA-Zа-яА-ЯЁё\s]+/msi', $name)){
-	// 	$msg1 = "Имя  может содержать цифры, и буквы латинского алфавита";
-	// }
-	//проверка существования файла
-	// elseif($stmt->fetch(PDO::FETCH_NUM)){
-	// 	$msg1 = "Такой  уже существует введите другое имя";
-	// }
+	elseif(!preg_match("/^[a-zA-Z0-9\s]+$/i", $name)){
+		$msg1 = "Имя  может содержать цифры, и буквы латинского алфавита";
+	}
 	//проверка длинны строки содержания файла
 	elseif (mb_strlen($text) < 4){
 		$msg = "Содержимое должно содержать больше символов";
 	}
 	else{
-		//$sql = "INSERT INTO articles (title, content, lang) VALUES(:name, :text, :lg)";
-		//$sql = "INSERT INTO articles SET title='$name', content='$text', lang='$lg'";
-		//Добавляем физически строку в базу данных двумя нижними строками
 		$query = $db->prepare("INSERT INTO articles (title, content, lang) VALUES(:name, :text, :lg)");// подготавливаем
-
 		$params = ['name' => $name, 'text' => $text, 'lg' => $lg];
-
-		$query->execute($params);//Выполняем запрос
-		$_SESSION['don'] = 'Данные успешно добавлены';
+		$query->execute($params);
+		// $_SESSION['don'] = 'Данные успешно добавлены';
 
 		//ПРОВЕРКА ОТПРАВКИ ЗАПРОСА В БАЗУ ДАННЫХ добавить для всех  SQL - запросов!!!!!!!!!!!!!!!!!!!!!!!!!
 		if($query->errorCode() != PDO::ERR_NONE){
 			//echo 'Ошибка';
 			$info = $query->errorInfo();
-###############################
+	###############################
 			// Создаем лог файл ошибок добавить дату
-			// echo 'ошибка <br>';
-			// file_put_contents("error.log", implode('@@@', $info) . "\n", FILE_APPEND);
-			// exit();
-################################
-			echo implode('<br>', $info);
-			//var_dump($info);
-			die();
-			//exit();
+			 echo 'ошибка1 <br>';
+			 file_put_contents($fex, $dt_er_log . " - " . implode('@', $info) . "\n", FILE_APPEND);
+			 exit();
+	################################
+			 // echo implode('<br>', $info);
+			 // var_dump($info);
+			 // die();
+			// //exit();
 		}
 		header("Location: index.php");
 		exit();
-	}			
-}
-else{
-	//GET
-}	
+	}	
+}		
 ?>
 
 
