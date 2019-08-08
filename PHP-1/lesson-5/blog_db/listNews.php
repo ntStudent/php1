@@ -31,9 +31,11 @@ include_once('../../function/functions.php');
 ?>
 
 	<title>listNews</title>
+	<link rel="shortcut icon" href="../favicon.ico">
 	<link rel="stylesheet" type="text/css" href="../css/add.css">
 	<a href="index.php"> home </a>
-	<?php if(is_auth_db()){
+	<?php 
+	if(is_auth_db()){
 		echo " <a href=\" add.php \"> add news </a> ";
 	}
 	else{

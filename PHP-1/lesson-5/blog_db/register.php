@@ -27,7 +27,7 @@ if (count($_POST) > 0) {
 		$msg1 = "В имени  должно быть больше чем три символа";
 	}
 	//установка по тому из каких символов должна состоять строка
-	elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё]/", $name)){
+	elseif(!preg_match("/[0-9a-zA-Zа-яА-Я]/", $name)){
 		$msg1 = "Имя  может содержать цифры, и буквы";
 	}
 	//проверка существования файла
@@ -38,8 +38,8 @@ if (count($_POST) > 0) {
 	elseif (mb_strlen($pass) < 8){
 		$msg = "Пароль должен содержать не менее 8 символов";
 	}
-	elseif(!preg_match("/[0-9a-zA-Z]/", $pass)){
-		$msg = "Имя  может содержать цифры, и буквы латинского алфавита";
+	elseif(!preg_match("/[0-9a-zA-Z]/", $pass) && !preg_match("/[0-9a-zA-Z]/", $pass_to)){
+		$msg = "Пароль может содержать цифры, и буквы латинского алфавита";
 	}
 	elseif ($pass != $pass_to){
 		$msg = "Пароль и повтор пароля должны совпадать";
@@ -127,12 +127,12 @@ else
 	   <br><br>
 		<p>
 			<label class="text" for="Password_one">Password:</label>
-			<input type="text" name="password" id="Password_one" value="<?=@$pass;?>"><br>
+			<input type="password" name="password" id="Password_one" value="<?=@$pass;?>"><br>
 			<span class="error"><?=@$msg?></span>
 		</p>
 		<p>
 			<label class="text" for="Password_to_one">Password replay:</label>
-			<input type="text" name="password_too" id="Password_to_one" value="<?=@$pass_to;?>"><br>
+			<input type="password" name="password_too" id="Password_to_one" value="<?=@$pass_to;?>"><br>
 			<span class="error"><?=@$msg?></span>
 		</p>
 		<!-- <input type="checkbox" name="remember" value="on">Запомнить меня <br><br> -->

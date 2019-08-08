@@ -36,7 +36,9 @@ if (!$is_auth_db){
 <?php
 // назначение переменной гет параметра
 	$artName = $_GET['fname'];
+	$id = $_GET['id'];
 	$artName = safe($artName);
+	$id = safe($id);
 	$fex = 'data/error.log';
 	$dtr = date('Y.m.d - H:i:s');
 
