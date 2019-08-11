@@ -1,0 +1,43 @@
+body{
+    background-image: url(../img-menu/dark-green-2790337.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+    font-family: sans-serif, Arial;
+    color: white;
+}
+
+.link a{
+    color: rgb(255, 244, 240);
+    text-decoration: none;
+    text-align: center;
+    display: block;/* делаем блочным элементов тег "a" */
+    padding: 5px 5px;
+}
+
+.link li{
+    display: inline-block;
+    background: #000;
+    width: 80px;
+    height: 30px;
+}
+
+li:hover{
+    background: #777777;
+}
+a:hover{
+    color: #000;
+}
+
+table, td{
+    border: 1px solid #ffff;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+tr{
+    border: 2px solid #ffff;
+}
+.comments .item .name_comment{
+    color: #ffff00;
+}
+

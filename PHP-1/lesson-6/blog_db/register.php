@@ -107,7 +107,7 @@ else
 <head>
 	<title>Register</title>
 	<link rel="shortcut icon" href="../favicon.ico">
-	<link rel="stylesheet" href="../css/add.css">
+	<link rel="stylesheet" href="css/add.css">
 </head>
 <body>
 	<a href="index.php">Home</a>

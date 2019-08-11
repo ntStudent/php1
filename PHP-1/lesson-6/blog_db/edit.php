@@ -174,7 +174,7 @@
 		<meta charset="UTF-8">
 		<title>edit news</title>
 		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" href="../css/add.css">
+		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
 		<a href="index.php">Exit</a>

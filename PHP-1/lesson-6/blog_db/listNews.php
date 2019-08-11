@@ -31,7 +31,7 @@ include_once('../../function/functions.php');
 ?>
 
 	<title>listNews</title>
-	<link rel="stylesheet" type="text/css" href="../css/add.css">
+	<link rel="stylesheet" type="text/css" href="css/add.css">
 	<a href="index.php"> home </a>
 	<?php 
 	if(is_auth_db()){

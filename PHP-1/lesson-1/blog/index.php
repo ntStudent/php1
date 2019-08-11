@@ -11,3 +11,4 @@ setcookie('pass', 'qwerty', time() - 1);
 <a href="add.php">Add news</a>
 <a href="listNews.php">List news</a>
 <a href="../../lesson-5/blog_db/index.php">blog db</a>
+<a href="../../lesson-6/index.php">lesson-6</a>

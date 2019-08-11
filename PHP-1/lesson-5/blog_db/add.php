@@ -55,8 +55,8 @@ if(count($_POST) > 0){
 		file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
 		exit();
 	}
-	header("Location: index.php");
-	exit();
+	// header("Location: index.php");
+	// exit();
 
 	//проверка длинны строки
 	if ((mb_strlen($name) < 3)){
@@ -90,13 +90,13 @@ if(count($_POST) > 0){
 			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
 			exit();
 		}
-		header("Location: index.php");
+		header("Location: listNews.php");
 		exit();
 	}			
 }
-else{
-	//GET
-}	
+// else{
+// 	//GET
+// }	
 ?>
 
 
@@ -105,7 +105,7 @@ else{
 	<head>
 		<meta charset="UTF-8">
 		<title>add news</title>
-		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="shortcut icon" href="../favicon.ico">
 		<link rel="stylesheet" href="../css/add.css">
 	</head>
 	<body>
@@ -135,9 +135,9 @@ else{
 	            <p>
 				Выберите язык <br>
 				<select name="lang">
+					<option value="" selected="selected">-</option>
 					<option>english</option>
 					<option>russian</option>
-					
 				</select>
 				</p>
 
