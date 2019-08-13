@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>add news</title>
-		<link rel="shortcut icon" href="../favicon.ico">
+		<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
 		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
@@ -11,6 +11,12 @@
 		<a href="listNews.php">List news</a>
 
 		<hr size="5px" height="5px" align="left" width="400px" color="gray">
+		<div class="name_page">
+			<p>
+				Добавить статью
+			</p>
+		</div>
+		<hr size="3px" height="5px" align="left" width="400px" color="gray">
 
 	    <div class="newsForm">
 	    	<form method="post">
@@ -43,11 +49,16 @@
 	            	<input type="submit" value="Сохранить"><br>
 	            </p>
 		    </form>
-		    
-		    <hr align="left" width="400px" color="red">
+	    </div>
+	    <br>
+	    <!-- <hr align="left" width="400px" color="red"> -->
+	    <div class="hr">
+	    	<p>
+	    		<hr align="left" width="400px" color="red">
+	    	</p>
+	    	
 	    </div>
 	    
-	    <hr align="left" width="400px" color="red">
 		<!-- <?php
 			//echo $msg . '<br>';
 

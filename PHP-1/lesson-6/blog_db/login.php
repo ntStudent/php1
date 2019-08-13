@@ -2,12 +2,11 @@
 <?php
 session_start();
 include_once('../../function/functions.php');
+include('model/model_add.php');
 error_reporting(E_ALL ^ E_NOTICE);
 date_default_timezone_set('Asia/Yekaterinburg');
 
 $db = connect_db();
-$fex = 'data/error.log';
-$dtr = date('Y.m.d - H:i:s');
 
 $log = $_POST['login'];
 $pass = $_POST['password'];
@@ -15,17 +14,11 @@ $pass = $_POST['password'];
 $log = safe($log);
 $pass = safe($pass);
 
-$sql = "SELECT * FROM users WHERE log_in = :l AND pass_word = :p";
-		$params = ['l' => $log, 'p' => $pass];
-		$query = $db->prepare($sql);
-		$query->execute($params);
+$count = is_login($db, $log, $pass);
 
-	
-		$count = $query->fetchAll();
-
-		foreach ($count as $key) {
-			 
-		}
+foreach ($count as $key) {
+	 
+}
 
 
 //echo md5('fffffff1111114444444');устаревшая функция шифрования
@@ -64,46 +57,9 @@ else{
 	setcookie('log',   $key['log_in'], time() - 1);
     setcookie('pass',  md5($key['pass_word']), time() - 1);
 }
+include('view/view_login.php');
 ?>
 
-<title>Login</title>
-<link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" href="css/add.css">
 
-<a href="index.php">Home</a>
-<hr>
-
-<p>
-		<span class="error"><?=@$_SESSION['error']?></span>
-		<span class="error"><?=@$_SESSION['error1']?></span>
-	</p>
-
-<form method="POST">
-	
-
-	<p>
-	       <label for="newsName">Логин:</label>
-	       <input type="text" name="login" id="newsName" value="<?=@$log;?>"><br>
-	       
-  
-	<p>
-		<label class="text" for="Password_one">Пароль:</label>
-		<input type="password" name="password" id="Password_one" value="<?=@$pass;?>"><br>
-		
-	</p>
-	 <br>
-	<p>
-		<label class="checkbox" for="Password_to_one">Запомнить меня</label>
-		<input type="checkbox" name="remember" id="Password_to_one" value="on"><br>
-		
-	</p>
-
-	<!-- Логин <br>
-	<input type="text" name="login"><br><br>
-	Пароль <br>
-	<input type="password" name="password"> <br>
-	<input type="checkbox" name="remember" value="on">Запомнить меня <br><br> -->
-	<input type="submit" value="Войти">
-</form>
 
 

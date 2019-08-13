@@ -1,8 +1,8 @@
 
 <?php
+session_start();
 include('view/view_all.php');
 include('view/view_index.php');
-session_start();
 error_reporting(E_ALL ^ E_NOTICE);
 unset($_SESSION['error']);
 unset($_SESSION['don']);

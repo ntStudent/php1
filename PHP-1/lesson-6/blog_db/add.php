@@ -38,28 +38,7 @@ if(count($_POST) > 0){
 	$fex = 'data/error.log';
 	$dtr = date('Y.m.d - H:i:s');
 
-	//проверкa валидации 
-	// 1) полей
-	// 2) (*)что такого файла еще нет
 	$count = unic_add($db);
-//Проверка на уникальность
-	// $sql = "SELECT * FROM articles WHERE title = :n";
-	// $params = ['n' => $name];
-	// $query = $db->prepare($sql);
-	// $query->execute($params);
-	// //так как имя статьи уникальное и может быть только одно такое имя то можго использовать просто - fetch - , виесто fetchAll.
-	// $count = $query->fetch();
-
-	// if($query->errorCode() != PDO::ERR_NONE){
-	// 	$info = $query->errorInfo();
-	// 	// Создаем лог файл ошибок добавить дату
-	// 	echo 'ошибка <br>';
-	// 	echo "<a href=\"index.php\">Back</a>";
-	// 	file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
-	// 	exit();
-	// }
-	// header("Location: index.php");
-	// exit();
 
 	//проверка длинны строки
 	if ((mb_strlen($name) < 3)){
@@ -87,6 +66,7 @@ else{
 	//GET
 }	
 
+include('view/view_all.php');
 include('view/view_add.php');
 ?>
 
