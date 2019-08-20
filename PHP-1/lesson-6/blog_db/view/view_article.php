@@ -7,9 +7,14 @@
 		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
-		<a href="index.php">Exit</a>
+		<a href="<?=@$msg133?>"><?=@$vLog?></a>
+		<a href="login.php">Exit</a>
 		<a href="listNews.php">List news</a>
 		<a href="add.php">Add news</a>
 		<hr>
+		<span class="error"><?=@$msg12?></span>
+		<span><h2><?=@$atN?></h2></span>
+		<span><h4><?=@$cta?></h4></span>
+		<a href="<?=@$msg132?>"><?=@$vEdit?></a>
 	</body>
 </html>

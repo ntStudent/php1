@@ -1,5 +1,9 @@
 <?php
 	date_default_timezone_set('Asia/Yekaterinburg');
+	// error_reporting(E_ALL); так настроено по умолчанию показывает все ошибки
+	// error_reporting(E_ALL ^ E_NOTICE); так не показываются нотайсы
+	error_reporting(E_ALL ^ E_NOTICE);
+
 	function article_add($db, $name, $text, $lg){
 		$fex = 'data/error.log';
 		$dtr = date('Y.m.d - H:i:s');
@@ -12,7 +16,7 @@
 		if($query->errorCode() != PDO::ERR_NONE){
 			$info = $query->errorInfo();
 			// Создаем лог файл ошибок добавить дату
-			echo 'ошибка <br>';
+			echo 'ошибка-101 <br>';
 			echo "<a href=\"index.php\">Back</a>";
 			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
 			exit();
@@ -20,7 +24,7 @@
 		return $db->lastInsertId();
 	}
 
-	function unic_add($db){
+	function unic_add($db, $name){
 		//Проверка на уникальность
 		$fex = 'data/error.log';
 		$dtr = date('Y.m.d - H:i:s');
@@ -28,13 +32,11 @@
 		$params = ['n' => $name];
 		$query = $db->prepare($sql);
 		$query->execute($params);
-		//так как имя статьи уникальное и может быть только одно такое имя то можго использовать просто - fetch - , виесто fetchAll.
-		$count = $query->fetch();
 
 		if($query->errorCode() != PDO::ERR_NONE){
 			$info = $query->errorInfo();
 			// Создаем лог файл ошибок добавить дату
-			echo 'ошибка <br>';
+			echo 'ошибка=202 <br>';
 			echo "<a href=\"index.php\">Back</a>";
 			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
 			exit();
@@ -52,11 +54,10 @@
 		$query = $db->prepare($sql);
 		$query->execute($params);
 		
-		
 		if($query->errorCode() != PDO::ERR_NONE){
 			$info = $query->errorInfo();
 			// Создаем лог файл ошибок добавить дату
-			echo 'ошибка <br>';
+			echo 'ошибка-303 <br>';
 			echo "<a href=\"index.php\">Back</a>";
 			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
 			exit();
@@ -68,13 +69,16 @@
 	function enter_listnews($db){
 		$fex = 'data/error.log';
 		$dtr = date('Y.m.d - H:i:s');
-		$query = $db->prepare("SELECT dt_reg, title, content, id_article FROM articles");
+		$sql = "SELECT * FROM articles ORDER BY dt_reg DESC";
+		$query = $db->prepare($sql);
+		// $query = $db->prepare("SELECT dt_reg, title, content, id_article FROM articles");
+		// $query = $db->prepare("SELECT * FROM articles ORDER BY dt_reg DESC");
 		$query->execute();
 
 		if($query->errorCode() != PDO::ERR_NONE){
 			$info = $query->errorInfo();
 			// Создаем лог файл ошибок добавить дату
-			echo 'ошибка <br>';
+			echo 'ошибка-404 <br>';
 			echo "<a href=\"index.php\">Back</a>";
 			file_put_contents($fex, $dtr . " > " . implode('@', $info) . "\n", FILE_APPEND);
 			exit();
@@ -94,7 +98,7 @@
 		if($query->errorCode() != PDO::ERR_NONE){
 			$info = $query->errorInfo();
 			// Создаем лог файл ошибок добавить дату
-			echo 'ошибка <br>';
+			echo 'ошибка-505 <br>';
 			echo "<a href=\"index.php\">Back</a>";
 			file_put_contents($fex, $dtr . " > " . implode('@', $info) . "\n", FILE_APPEND);
 			exit();
@@ -117,13 +121,74 @@
 		if($query->errorCode() != PDO::ERR_NONE){
 			$info = $query->errorInfo();
 			// Создаем лог файл ошибок добавить дату
-			echo 'ошибка <br>';
+			echo 'ошибка-606 <br>';
 			echo "<a href=\"index.php\">Back</a>";
 			file_put_contents($fex, $dtr . " > " . implode('@', $info) . "\n", FILE_APPEND);
 			exit();
 		}
 		return $db->lastInsertId();
 	}
+
+	function unicNameArticle($db, $name, $id){
+		$fex = 'data/error.log';
+		$dtr = date('Y.m.d - H:i:s');
+		$sql = "SELECT content FROM articles WHERE title = :n AND id_article != :i";
+		$params = ['n' => $name, 'i' => $id];
+		$query = $db->prepare($sql);
+		$query->execute($params);
+		//$count = $query->fetchAll();
+
+		if($query->errorCode() != PDO::ERR_NONE){
+			$info = $query->errorInfo();
+			// Создаем лог файл ошибок добавить дату
+			echo 'ошибка1 <br>';
+			echo "<a href=\"index.php\">Back</a>";
+			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
+			exit();
+		}
+		$result = $query->fetchAll();
+		return $result;
+	}
+
+	function editArticle($db, $id, $text, $name, $lg){
+		$fex = 'data/error.log';
+		$dtr = date('Y.m.d - H:i:s');
+		$sql = "UPDATE articles SET lang = :l, title = :tl, content=:t WHERE id_article=:i";
+
+		$params = ['i' => $id, 't' => $text, 'tl' => $name, 'l' => $lg];
+		$query = $db->prepare($sql);
+		$query->execute($params);
+
+		if($query->errorCode() != PDO::ERR_NONE){
+			$info = $query->errorInfo();
+			// Создаем лог файл ошибок добавить дату
+			echo 'ошибка1 <br>';
+			echo "<a href=\"index.php\">Back</a>";
+			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
+			exit();
+		}
+		return $db->lastInsertId();
+	}
+
+	function delArticle($db, $id){
+		$fex = 'data/error.log';
+		$dtr = date('Y.m.d - H:i:s');
+		$sql2 = "DELETE FROM articles WHERE id_article=:i";
+		$params2 = ['i' => $id];
+		$query = $db->prepare($sql2);
+		$query->execute($params2);
+
+		if($query->errorCode() != PDO::ERR_NONE){
+			$info = $query->errorInfo();
+			// Создаем лог файл ошибок добавить дату
+			echo 'ошибка1 <br>';
+			echo "<a href=\"index.php\">Back</a>";
+			file_put_contents($fex, $dtr . " > " . implode('-@-', $info) . "\n", FILE_APPEND);
+			exit();
+		}
+		return $db->lastInsertId();
+	}
+
 		
 	
 ?>

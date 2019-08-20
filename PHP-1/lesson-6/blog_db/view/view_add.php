@@ -11,6 +11,7 @@
 		<a href="listNews.php">List news</a>
 
 		<hr size="5px" height="5px" align="left" width="400px" color="gray">
+		
 		<div class="name_page">
 			<p>
 				Добавить статью

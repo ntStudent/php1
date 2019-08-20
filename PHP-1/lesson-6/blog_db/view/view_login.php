@@ -6,9 +6,9 @@
 <hr>
 
 <p>
-		<span class="error"><?=@$_SESSION['error']?></span>
-		<span class="error"><?=@$_SESSION['error1']?></span>
-	</p>
+	<span class="error"><?=@$_SESSION['error']?></span>
+	<span class="error"><?=@$_SESSION['error1']?></span>
+</p>
 
 <form method="POST">
 	
