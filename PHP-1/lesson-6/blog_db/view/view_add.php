@@ -24,7 +24,7 @@
 	           <p>
 		           <label for="newsName">Название файла:</label>
 		           <input type="text" name="name" id="newsName" value="<?=@$name;?>"><br>
-		           <span class="error"><?=@$msg1?></span>
+		           <span class="error"><?=@$errors[msg1]?></span>
 	           </p>
 
 	           <br>
@@ -32,7 +32,7 @@
 	            <p>
 	            	<label class="text" for="newsContent">Содержимое файла:</label>
 	            	<textarea name="text" id="newsContent"><?=@$text;?></textarea><br>
-	            	<span class="error"><?=@$msg?></span>
+	            	<span class="error"><?=@$errors[msg]?></span>
 	            </p>
 
 	            <br>

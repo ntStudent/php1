@@ -30,6 +30,8 @@ $comments = enter_article($db, $id);
 		else{
 			//выводим содержание статьи
 			foreach ($comments as $key) {
+				$dtrN = $key['dt_reg'];
+				$dtrE = $key['dt_edit'];
 				$atN = $key['title'];
 				$cta = $key['content'];
 			}

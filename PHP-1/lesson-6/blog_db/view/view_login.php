@@ -1,6 +1,6 @@
 <title>Login</title>
 <!-- <link rel="shortcut icon" href="../favicon.ico"> -->
-<link rel="stylesheet" href="css/add.css">
+<!-- <link rel="stylesheet" href="css/add.css"> -->
 
 <a href="index.php">Home</a>
 <hr>

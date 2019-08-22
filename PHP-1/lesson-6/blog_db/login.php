@@ -3,6 +3,7 @@
 session_start();
 include_once('../../function/functions.php');
 include('model/model_add.php');
+include_once('view/view_all.php');
 error_reporting(E_ALL ^ E_NOTICE);
 date_default_timezone_set('Asia/Yekaterinburg');
 

@@ -20,13 +20,13 @@
 	           <p>
 		           <label for="newsName">Название файла:</label><br>
 		           <input type="text" name="name" id="newsName" value="<?=@$nt;?>"><br>
-		           <span class="error"><?=@$msg1?></span>
+		           <span class="error"><?=@$errors[msg1]?></span>
 	           </p>
 	           <br>
 	            <p>
 	            	<label class="text" for="Content">Содержимое файла:</label><br>
 	            	<textarea rows="16" cols="150" name="text" id="Content"><?=@$ct;?></textarea><br>
-	            	<span class="error"><?=@$msg?></span>
+	            	<span class="error"><?=@$errors[msg]?></span>
 	            </p>
 	            <br>
 

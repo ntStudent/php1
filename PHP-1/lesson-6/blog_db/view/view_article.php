@@ -13,8 +13,10 @@
 		<a href="add.php">Add news</a>
 		<hr>
 		<span class="error"><?=@$msg12?></span>
+		<span><h4><?=@$dtrN?></h4></span>
+		<span><h4><?=@$dtrE?></h4></span>
 		<span><h2><?=@$atN?></h2></span>
-		<span><h4><?=@$cta?></h4></span>
+		<span><h3><?=@$cta?></h3></span>
 		<a href="<?=@$msg132?>"><?=@$vEdit?></a>
 	</body>
 </html>
