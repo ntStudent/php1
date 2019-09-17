@@ -4,77 +4,16 @@
 	include_once('model/model_add.php');
 	include_once('view/view_all.php');
 	$db = connect_db();
-
+//AUTH
 	if(!is_auth_db()){
 		$_SESSION['error'] = 'Авторизуйтесь';
-		// "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\"><p>Авторизуйтесь</p></div>";
 		header('Location: login.php');
 		exit();		
 	}
 	else{
 		unset($_SESSION['error']);
 	}
-	if(count($_POST) > 0){
-		//POST
-		$name = ($_POST['name']);
-		$text = ($_POST['text']);
-		$lg = ($_POST['lang']);
-		$fileName = $_GET['fname'];
-		$id = $_GET['id'];
-
-		//прогоняем через функцию
-		$fileName = safe($fileName);
-		$name = safe($name);
-		$text = safe($text);
-		$lg = safe($lg);
-		$id = safe($id);
-		$coun = enter_article($db, $id);
-		$count = unicNameArticle($db, $name, $id);
-		$errors = messages_validate_edit($count, $name, $text);
-
-		foreach ($coun as $key) {
-			$atN = $key['title'];
-			$cta = $key['content'];
-			$ida = $key['id_article'];
-		}
-		// if ((mb_strlen($name) < 2)){//проверка длинны строки имени файла
-		// 	$msg1 = "В имени файла должно быть больше чем три символа";
-		// }
-		// elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё\s]/", $name)){
-		// 	$msg1 = "Имя файла может содержать цифры, и буквы";
-		// }
-		// elseif(mb_strlen($text) < 4){//проверка длинны строки содержания файла
-		// 	$msg = "Содержимое файла должно содержать больше символов";
-		// }
-		if(empty($errors)){
-			if(isset($_POST['save'])){
-				editArticle($db, $id, $text, $name, $lg);
-				header("Location: listNews.php");
-				exit();		
-		 	}
-			// if ($count){//проверка существования файла
-			//  	$msg1 = "Такой файл уже существует введите другое имя";
-			// }
-		}
- 		// elseif(empty($errors)){
-			// editArticle($db, $id, $text, $name, $lg);
-			// header("Location: listNews.php");
-			// exit();		
-	 	// }
-	 	elseif(empty($errors)){
-	    	if(isset($_POST['delete'])){//проверка существования файла
-	    		delArticle($db, $id);
-				header("Location: listNews.php");
-				exit();
-		 	   // $msg1 = "Вы не можете удалить другой файл введите имя открытого файла";
-	 		}
-	 		// elseif(empty($errors)){
-				// delArticle($db, $id);
-				// header("Location: listNews.php");
-				// exit();
-		  //   }
-	    }
-	}
+//GET
 	$id = $_GET['id'];
 	$id = safe($id);
 	$comments = enter_article($db, $id);
@@ -85,15 +24,48 @@
 			}
 	if($id != ''){
 		if (!$comments) {
-			$msg21 = 'Нет такой статьи-101';
-			// echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Нет такой статьи1</div>";
+			$msg21 = 'Нет такой статьи-101';	
 		}
 	}
 	else{
 		$msg22 = 'Нет параметра GET-101';
-		// echo "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Нет параметра GE1T</div>";
 	}
-include_once('view/view_edit.php');
+//POST
+	if(count($_POST) > 0){
+		//POST
+		$name = ($_POST['name']);
+		$text = ($_POST['text']);
+		$lg = ($_POST['lang']);
+		$fileName = $_GET['fname'];
+		$id = $_GET['id'];
+		//прогоняем через функцию
+		$fileName = safe($fileName);
+		$name = safe($name);
+		$text = safe($text);
+		$lg = safe($lg);
+		$id = safe($id);
+		$coun = enter_article($db, $id);
+		$count = unicNameArticle($db, $name, $id);
+		$errors = messages_validate($count, $name, $text);
+		foreach ($coun as $key) {
+			$atN = $key['title'];
+			$cta = $key['content'];
+			$ida = $key['id_article'];
+		}
+		if(empty($errors)){
+			if(isset($_POST['save'])){
+				editArticle($db, $id, $text, $name, $lg);
+				header("Location: listNews.php");
+				exit();
+		 	}	
+		 	elseif(isset($_POST['delete'])){//проверка существования файла
+	    		delArticle($db, $id);
+				header("Location: listNews.php");
+				exit();   
+	 		}
+		}
+	}
+include('view/view_edit.php');
 ?>	
 
 

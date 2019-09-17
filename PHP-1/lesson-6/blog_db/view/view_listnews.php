@@ -1,24 +1,11 @@
 <title>listNews</title>
-<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
-	
-	<a href="index.php"> home </a>
-	<!-- <div><h3><a href=\"article.php?id=$od\">$ot</a></h3></div> -->
-
+<a href="index.php"> home </a>
 <?php
-	foreach($comments as $one){ //:  "<div><h3><a href=\"article.php?fname=$one\">$one</a></h3></div>"
+	foreach($comments as $one){ 
 			$ot = $one['title'];
 			$od = $one['id_article'];
 		echo "<div><h3><a href=\"article.php?id=$od\">$ot</a></h3></div>";
-
-	// 	//echo $one['title'];
-	// 	// echo $one['content'];
 	}
-
-
-
-
-
-	 //endforeach;
 ?>
 <!-- короткая форма записи 
 убираем -php- и фигурные скобки ставим вместо них двоеточия делаем разрыв

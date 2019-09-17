@@ -26,10 +26,6 @@ if (count($_POST) > 0) {
 	elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё]/", $name)){
 		$msg1 = "Имя  может содержать цифры, и буквы";
 	}
-	//проверка существования файла
-	// elseif(file_exists($fex)){
-	// 	$msg1 = "Такой  уже существует введите другое имя";
-	// }
 	//проверка длинны строки содержания файла
 	elseif (mb_strlen($pass) < 8){
 		$msg = "Пароль должен содержать не менее 8 символов";
@@ -42,7 +38,6 @@ if (count($_POST) > 0) {
 	}
 	else{
 		is_register($db, $name, $pass);
-		
 		header("Location: login.php");
 		exit();
 	}	

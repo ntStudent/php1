@@ -15,7 +15,6 @@ if(!is_auth_db()){
 	exit();		
 }
 unset($_SESSION['error']);
-
 if(count($_POST) > 0){
 	//POST
 	$name = ($_POST['name']);

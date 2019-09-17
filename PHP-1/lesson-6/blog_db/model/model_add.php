@@ -71,8 +71,6 @@
 		$dtr = date('Y.m.d - H:i:s');
 		$sql = "SELECT * FROM articles ORDER BY dt_reg DESC";
 		$query = $db->prepare($sql);
-		// $query = $db->prepare("SELECT dt_reg, title, content, id_article FROM articles");
-		// $query = $db->prepare("SELECT * FROM articles ORDER BY dt_reg DESC");
 		$query->execute();
 
 		if($query->errorCode() != PDO::ERR_NONE){
@@ -192,7 +190,7 @@
 	function messages_validate($count, $name, $text){
 		$errors = [];
 		if($count){
-	 	$errors['msg1'] = "Такое имя уже существует введите другое имя";
+		 	$errors['msg1'] = "Введите другое имя";
 		}
 		//проверка длинны строки
 		elseif ((mb_strlen($name) < 3)){
@@ -200,7 +198,7 @@
 		}
 		//установка по тому из каких символов должна состоять строка
 		elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё\s]/", $name)){
-		 	$errors['msg1'] = "Имя  может содержать цифры, и буквы";
+		 	$errors['msg1'] = "Имя  должно содержать цифры, и буквы";
 		}
 		//проверка длинны строки содержания файла
 		if (mb_strlen($text) < 4){
@@ -209,25 +207,34 @@
 		return $errors;
 	}
 
-	function messages_validate_edit($count, $name, $text){
+	// function messages_validate_edit($count, $name, $text){
+	// 	$errors = [];
+	// 	if($count){
+	// 	 	$errors['msg1'] = "Введите другое имя";
+	// 	}
+	// 	elseif ((mb_strlen($name) < 3)){//проверка длинны строки имени файла
+	// 		$errors['msg1'] = "В имени файла должно быть больше чем три символа";
+	// 	}
+	// 	elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё\s]/", $name)){
+	// 		$errors['msg1'] = "Имя должно содержать цифры, и буквы";
+	// 	}
+	// 	elseif(mb_strlen($text) < 4){//проверка длинны строки содержания файла
+	// 		$errors['msg'] = "Содержимое файла должно содержать больше символов";
+	// 	}
+	// 	return $errors;
+	// }
+
+	function validate_article($id, $comments){
 		$errors = [];
-		if($count){
-		 	$errors['msg1'] = "Такое имя уже существует введите другое имя";
+		if($id != ''){
+			if (!$comments) {
+				$errors['msg12'] = "Нет такой статьи-202";
+			}
 		}
-		elseif ((mb_strlen($name) < 2)){//проверка длинны строки имени файла
-			$errors['msg1'] = "В имени файла должно быть больше чем три символа";
-		}
-		elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё\s]/", $name)){
-			$errors['msg1'] = "Имя файла может содержать цифры, и буквы";
-		}
-		elseif(mb_strlen($text) < 4){//проверка длинны строки содержания файла
-			$errors['msg'] = "Содержимое файла должно содержать больше символов";
-		}
-		// elseif (isset($_POST['save'])){
-	 // 		if ($count){//проверка существования файла
-	 // 	   		$msg1 = "Такой файл уже существует введите другое имя";
-	 // 		}
-	 // 	}
+		else{
+		$errors['msg12'] = "Нет параметра GET-303";
+		}	
+		return $errors;
 	}
 
 
