@@ -204,6 +204,9 @@
 		if (mb_strlen($text) < 4){
 			$errors['msg'] = "Статья должна содержать больше символов";
 		}
+		 if (mb_strlen($text) > 256) {
+			$errors['msg'] = "Слишком много символов";
+		}
 		return $errors;
 	}
 
@@ -234,6 +237,28 @@
 		else{
 		$errors['msg12'] = "Нет параметра GET-303";
 		}	
+		return $errors;
+	}
+
+	function validate_register($name, $pass, $pass_to){
+		$errors = [];
+		if ((mb_strlen($name) < 3)){
+		$errors['msg1'] = "В имени  должно быть больше чем три символа";
+		}
+		//установка по тому из каких символов должна состоять строка
+		elseif(!preg_match("/[0-9a-zA-Zа-яА-ЯЁё]/", $name)){
+			$errors['msg1'] = "Имя  может содержать цифры, и буквы";
+		}
+		//проверка длинны строки содержания файла
+		if (mb_strlen($pass) < 8){
+			$errors['msg'] = "Пароль должен содержать не менее 8 символов";
+		}
+		elseif(!preg_match("/[0-9a-zA-Z]/", $pass)){
+			$errors['msg'] = "Имя  может содержать цифры, и буквы латинского алфавита";
+		}
+		if ($pass != $pass_to){
+			$errors['msg2'] = "Пароль и повтор пароля должны совпадать";
+		}
 		return $errors;
 	}
 

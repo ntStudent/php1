@@ -12,3 +12,8 @@ setcookie('log',  time() - 1);
 setcookie('pass',  time() - 1);	
 ?>
 
+
+
+
+
+

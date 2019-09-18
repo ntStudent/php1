@@ -26,39 +26,26 @@
 		           <input type="text" name="name" id="newsName" value="<?=@$name;?>"><br>
 		           <span class="error"><?=@$errors[msg1]?></span>
 	           </p>
-
-	           <br>
-
 	            <p>
 	            	<label class="text" for="newsContent">Содержимое файла:</label>
 	            	<textarea name="text" id="newsContent"><?=@$text;?></textarea><br>
 	            	<span class="error"><?=@$errors[msg]?></span>
 	            </p>
-
-	            <br>
-
 	            <p>
-				Выберите язык <br>
-				<select name="lang">
-					<option value="" selected="selected">-</option>
-					<option>english</option>
-					<option>russian</option>
-				</select>
+					Выберите язык <br>
+					<select name="lang">
+						<option value="" selected="selected">-</option>
+						<option>english</option>
+						<option>russian</option>
+					</select>
 				</p>
-
 	            <p>
 	            	<input type="submit" value="Сохранить"><br>
 	            </p>
 		    </form>
 	    </div>
-	    <br>
-	    <!-- <hr align="left" width="400px" color="red"> -->
-	    <div class="hr">
-	    	<p>
-	    		<hr align="left" width="400px" color="red">
-	    	</p>
-	    	
-	    </div>
+	    <hr align="left" width="400px" color="blue">
+	    <hr size="5px" align="left" width="400px" color="red">
 	    
 		<!-- <?php
 			//echo $msg . '<br>';

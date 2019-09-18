@@ -39,7 +39,7 @@ if (count($_POST) > 0) {
 		}	
 	}
 	else{
-		$_SESSION['error1'] = "<div style=\"font:bold 18px Arial; color:#bc0000; text-align:center;\">Логин или Пароль неверны</div>";	
+		$_SESSION['error1'] = "Логин или Пароль неверны";	
 	}
 }
 else{
