@@ -42,3 +42,6 @@
 2019.08.22 - 13:58:54 > 23000-@-1062-@-Duplicate entry 'lol' for key 'title'
 2019.09.14 - 00:29:54 > 23000-@-1062-@-Duplicate entry 'Hg' for key 'title'
 2019.09.14 - 08:13:36 > 23000-@-1062-@-Duplicate entry 'Hg' for key 'title'
+2019.10.04 - 13:46:37 > 42S22@1054@Unknown column 'log_in' in 'where clause'
+2019.10.04 - 13:46:42 > 42S22@1054@Unknown column 'log_in' in 'where clause'
+2019.10.04 - 13:48:50 > 42S22@1054@Unknown column 'log_in' in 'where clause'
