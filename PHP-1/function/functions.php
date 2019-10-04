@@ -97,5 +97,3 @@ function is_auth(){
         }
         return ($res);
     }
-
- ?>

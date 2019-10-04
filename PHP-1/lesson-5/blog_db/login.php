@@ -16,20 +16,21 @@ $log = safe($log);
 $pass = safe($pass);
 
 $sql = "SELECT * FROM users WHERE log_in = :l AND pass_word = :p";
-		$params = ['l' => $log, 'p' => $pass];
-		$query = $db->prepare($sql);
-		$query->execute($params);
+	$params = ['l' => $log, 'p' => $pass];
+	$query = $db->prepare($sql);
+	$query->execute($params);
 
-	
-		$count = $query->fetchAll();
 
-		foreach ($count as $key) {
-			 
-		}
+	$count = $query->fetchAll();
+
+	foreach ($count as $key) {
+	}
+
 
 
 //echo md5('fffffff1111114444444');устаревшая функция шифрования
 if (count($_POST) > 0) {
+	///if ($_POST['login'] == 'admin' && md5($_POST['password']) == md5('qwerty')){
 	if ($_POST['login'] ==  $key['log_in'] && md5($_POST['password']) == md5($key['pass_word'])) {
 		$_SESSION['auth_db'] = true;
 
@@ -59,11 +60,13 @@ if (count($_POST) > 0) {
 	}
 }
 else{
+	$_SESSION['error1'] = "Введите Логин и Пароль";
 	unset($_SESSION['auth_db']);
 	unset($_SESSION['error1']);
 	setcookie('log',   $key['log_in'], time() - 1);
     setcookie('pass',  md5($key['pass_word']), time() - 1);
 }
+echo $logP;
 ?>
 
 <title>Login</title>
@@ -74,28 +77,25 @@ else{
 <hr>
 
 <p>
-		<span class="error"><?=@$_SESSION['error']?></span>
-		<span class="error"><?=@$_SESSION['error1']?></span>
-	</p>
+	<span class="error"><?=@$_SESSION['error']?></span>
+	<span class="error"><?=@$_SESSION['error1']?></span>
+</p>
 
 <form method="POST">
 	
-
 	<p>
-	       <label for="newsName">Логин:</label>
-	       <input type="text" name="login" id="newsName" value="<?=@$log;?>"><br>
-	       
+       <label for="newsName">Логин:</label>
+       <input type="text" name="login" id="newsName" value="<?=@$log;?>"><br>
+	</p>      
   
 	<p>
 		<label class="text" for="Password_one">Пароль:</label>
 		<input type="password" name="password" id="Password_one" value="<?=@$pass;?>"><br>
-		
 	</p>
 	 <br>
 	<p>
 		<label class="checkbox" for="Password_to_one">Запомнить меня</label>
 		<input type="checkbox" name="remember" id="Password_to_one" value="on"><br>
-		
 	</p>
 
 	<!-- Логин <br>
