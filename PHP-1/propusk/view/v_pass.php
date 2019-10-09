@@ -2,15 +2,15 @@
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8">
-		<title>news</title>
+		<title>pass</title>
 		<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
-		<link rel="stylesheet" href="css/add.css">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<!-- <a href="<?=@$msg133?>"><?=@$vLog?></a>
+		<a href="<?=@$msg133?>"><?=@$vLog?></a>
 		<a href="login.php">Exit</a>
-		<a href="listNews.php">List news</a>
-		<a href="add.php">Add news</a> -->
+		<a href="listPass.php">List pass</a>
+		<a href="addPass.php">Add news</a>
 		<hr>
 		<span class="error"><?=@$errors['msg12']?></span>
 		<span><h4><?=@$dtrN?></h4></span>
