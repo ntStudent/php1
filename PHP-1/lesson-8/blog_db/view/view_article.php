@@ -1,3 +1,18 @@
+<?php
+// echo $comments;
+// foreach($comments as $one){
+// 	$qwer = $one['title'];
+// 	echo $qwer;
+// }
+foreach ($comments as $key) {
+		$dtrN = $key['dt_reg'];
+		$dtrE = $key['dt_edit'];
+		$atN = $key['title'];
+		$cta = $key['content'];
+	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -7,16 +22,15 @@
 		<link rel="stylesheet" href="css/add.css">
 	</head>
 	<body>
-		<!-- <a href="<?=@$msg133?>"><?=@$vLog?></a>
-		<a href="login.php">Exit</a>
+		<a href="<?=@$msg133?>"><?=@$vLog?></a>
+		<!-- <a href="login.php">Exit</a>
 		<a href="listNews.php">List news</a>
 		<a href="add.php">Add news</a> -->
-		<hr>
+		<!-- <hr> -->
 		<span class="error"><?=@$errors['msg12']?></span>
 		<span><h4><?=@$dtrN?></h4></span>
 		<span><h4><?=@$dtrE?></h4></span>
 		<span><h2><?=@$atN?></h2></span>
 		<span><h3><?=@$cta?></h3></span>
-		<a href="<?=@$msg132?>"><?=@$vEdit?></a>
 	</body>
 </html>

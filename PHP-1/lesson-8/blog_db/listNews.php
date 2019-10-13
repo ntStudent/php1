@@ -21,7 +21,7 @@
 
 
 	$html = template('view/view_main.php', [
-	'title' => 'Добавить новость',
+	'title' => 'Статьи',
 	'content' => $a
 	]);
 	echo $html;

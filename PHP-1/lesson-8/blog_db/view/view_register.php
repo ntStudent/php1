@@ -6,10 +6,10 @@
 	<link rel="stylesheet" href="css/add.css"> -->
 </head>
 <body>
-	<a href="index.php">Home</a>
+	<!-- <a href="index.php">Home</a> -->
 	<hr size="5px" height="5px" align="left" width="450px" color="gray">
 	<div style="font:bold 18px Arial; color:#bc0001; text-align:center;"><h3>Зарегистрируйтесь</h3></div>
-	
+
 	<form method="POST">
 		<!-- <p>
 			<span class="error"><?=@$_SESSION['error']?></span>

@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="media1/add.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="css/add.css">
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <title><?=$title?></title>
 </head>
 <body>
@@ -29,6 +32,8 @@
                             <li><a href="listNews.php">Статьи</a></li>
                             <li><a href="add.php">Добавить статью</a></li>
                             <li><a href="register.php">Регистрация</a></li>
+                            <?=$content1?>
+                            <?=$content2?>
                         </ul>
                     </nav>
                 </div>

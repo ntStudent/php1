@@ -66,7 +66,7 @@ $content = template('view/view_login.php', [
 ]);
 
 $html = template('view/view_main.php', [
-	'title' => 'Добавить новость',
+	'title' => 'Войти',
 	'content' => $content
 ]);
 echo $html;
