@@ -16,8 +16,8 @@
                 <div class="wrapper">
                     <div class="logo"></div>
                     <div class="slogan">
-                        <div class="title">Рога и копыта</div>
-                        <div class="subtitle">Всем по рогам, всем по копытам.</div>
+                        <div class="title">Стейки и бургеры</div>
+                        <div class="subtitle">Всем по стейку, всем по бургеру.</div>
                     </div>
                     <div class="phone">8 800 800 80 80</div>
                 </div>

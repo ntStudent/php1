@@ -17,7 +17,7 @@
 
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8">
@@ -26,7 +26,7 @@
 		<link rel="stylesheet" href="css/add.css">
 		<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	</head>
-	<body>
+	<body> -->
 		<!-- <a href="index.php">Exit</a>
 		<a href="../course_php_1-1.php">Home</a>
 		<a href="add.php">Add news</a>
@@ -79,5 +79,5 @@
 	// echo 'Количество символов в имени - ' . mb_strlen($title) . '<br>';
 	// echo 'Количество символов в содержании - ' . mb_strlen($content);
 ?> -->
-	</body>
-</html>
+<!-- 	</body>
+</html> -->

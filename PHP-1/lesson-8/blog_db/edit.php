@@ -46,7 +46,7 @@ if(count($_POST) > 0){
 	$text = safe($text);
 	$lg = safe($lg);
 	$id = safe($id);
-	$coun = enter_article($db, $id);
+	//$coun = enter_article($db, $id);
 	$count = unicNameArticle($db, $name, $id);
 	$errors = messages_validate($count, $name, $text);
 	// foreach ($coun as $key) {

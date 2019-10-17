@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<title>Register</title>
+	<title>Register</title> -->
 	<!-- <link rel="shortcut icon" href="../favicon.ico">
 	<link rel="stylesheet" href="css/add.css"> -->
-</head>
-<body>
+<!-- </head>
+<body> -->
 	<!-- <a href="index.php">Home</a> -->
 	<hr size="5px" height="5px" align="left" width="450px" color="gray">
 	<div style="font:bold 18px Arial; color:#bc0001; text-align:center;"><h3>Зарегистрируйтесь</h3></div>
 
 	<form method="POST">
 		<!-- <p>
-			<span class="error"><?=@$_SESSION['error']?></span>
-			<span class="error"><?=@$_SESSION['error1']?></span>
+			<span class="error"><?//=@$_SESSION['error']?></span>
+			<span class="error"><?//=@$_SESSION['error1']?></span>
 		</p> -->
 		<p>
 	       <label for="newsName">Name:</label>
@@ -34,5 +34,5 @@
 		<!-- <input type="checkbox" name="remember" value="on">Запомнить меня <br><br> -->
 		<input type="submit" value="Зарегистрироваться">
 	</form>
-</body>
-</html>
+<!-- </body>
+</html> -->

@@ -1,0 +1,20 @@
+body{
+	background: lightgrey;
+}
+
+
+table, td, thead, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+/*table, thead, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}*/
+
+tr{
+    border: 3px solid black;
+}

@@ -54,7 +54,7 @@ $content = template('view/view_article.php', [
 // ]);
 
 $html = template('view/view_main.php', [
-	'title' => 'Список новостей',
+	'title' => "Статья № $id",
 	'content' => $content,
 	'content1' => $vEdit
 ]);

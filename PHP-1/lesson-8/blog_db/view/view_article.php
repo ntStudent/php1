@@ -28,8 +28,8 @@ foreach ($comments as $key) {
 		<a href="add.php">Add news</a> -->
 		<!-- <hr> -->
 		<span class="error"><?=@$errors['msg12']?></span>
-		<span><h4><?=@$dtrN?></h4></span>
-		<span><h4><?=@$dtrE?></h4></span>
+		<span><h4>Дата создания -<?=@$dtrN?></h4></span>
+		<span><h4>Дата редактирования - <?=@$dtrE?></h4></span><br>
 		<span><h2><?=@$atN?></h2></span>
 		<span><h3><?=@$cta?></h3></span>
 	</body>
