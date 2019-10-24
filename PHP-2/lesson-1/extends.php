@@ -115,7 +115,7 @@
         }
     }
 
-        class superMosquito extends Animal
+    class superMosquito extends Mosquito
     {
         // свойства класса (то что характеризует объект)
         private $trunk;
@@ -125,25 +125,8 @@
         {
             parent::__construct();
 
-            $this->hp = 10;
-            $this->power = 10;
+            $this->power *= 3;
             $this->color = 'black';
-        }
-        public function move()
-        {
-            $this->x += 1;
-            $this->y += 1;
-        }
-
-
-        public function fly()
-        {
-            $this->x = $this->x * 10;
-        }
-
-        public function bite()
-        {
-
         }
     }
 #######################################################
