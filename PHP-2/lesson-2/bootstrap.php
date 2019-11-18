@@ -14,7 +14,7 @@ $hGen = new htmlGenerator('data/article_1.txt');
 // обращение к статичному свойству
 // htmlGenerator::$property;
 
-// обращеник к констенте
+// обращение к константе
 // htmlGenerator::NAME;
 
 

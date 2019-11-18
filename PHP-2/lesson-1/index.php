@@ -3,18 +3,20 @@
     class Toad
     {
         // свойства класса (то что характеризует объект)
+        // private, public, protected - это модификаторы доступа с их помощью можно управлять видимостью свойств и методов класса
         private $x;
         private $y;
         private $name;
         private $power;
         private $color;
         private $hp;
+        private $hp1;
 
         // методы класса (то что умеет делать объект)
         // футкция конструктор в которой происходит первоначальная настройка объекта, вызывается в момент создания экземпляра класса
         public function __construct($n, $c)
         {
-            // $this->x = 5;//"$this" - это указатель на текущий объект, устанавливаем параметр "х"
+            // $this->x = 5;//"$this" - Псевдопеременная, это ссылка (указатель) на вызываемый (текущий) объект, она доступна если метод был вызван в контексте объекта, устанавливаем параметр "х"
             // $this->y = 5;
             // можно так
             // $this->x =$this->getXY();
@@ -27,6 +29,7 @@
             $this->color = $c;
         }
         // создаем метод который будет возвращать имя объекта
+        // если у метода не указан модификатор доступа то по умолчанию стоит public
         public function getName()
         {
             return $this->name;
@@ -59,6 +62,7 @@
 
         }
 
+// если метод что то возвращает то это -get- метод, если метод что то устанавливает то это -set- метод
         // function getXY()
         //    {
         // return mt_rand(1, 100);
@@ -125,8 +129,13 @@
 #######################################################
 
     $toad1 = new Toad('Jhon', 'Red');//имя в скобках это переменная -$n- функции конструктор
+    $toad2 = new Toad('Pimple', 'Yellow');
+    $toad3 = new Toad('Лёха', 'Gren');
+
+    // $toad1->name = 'Walner'; что бы таким способом нельзя было перезаписать свойства объекта обозначаем методы и свойства -private-
 
     // с помощью метода возвращающего имя мы можем вывести имя из вне, такой метод называется -геттер-
+    // echo "this" . $toad1->name . "<br>";
     echo $toad1->getName() . ': сейчас тут - ' . $toad1->getPlace() . "<br>";
     $toad1->showPlace();
 
@@ -135,7 +144,7 @@
     // echo  $toad1->x = 999999 . "<br>";
     // echo  $toad1->name;
     // echo  $toad1->name = 'Victor';
-    $toad2 = new Toad('Pimple', 'Yellow');
+
     echo $toad2->getName() . ': сейчас тут - ' . $toad2->getPlace() .  "<br>";
     // echo $toad1->getPlace() . '<br>';
     // echo $toad2->getPlace() . '<br>';
@@ -145,4 +154,8 @@
     // $toad2->move();
     echo '<br>';
     echo $toad1->getName() . ': сейчас тут - ' . $toad1->getPlace() . "<br>";
-    echo $toad2->getName() . ': сейчас тут - ' . $toad2->getPlace() .  "<br>";
+    echo $toad2->getName() . ': сейчас тут - ' . $toad2->getPlace() . "<br>";
+    echo $toad3->getName() . ': сейчас тут - ' . $toad3->getPlace() . "<br>";
+    $toad3->jump();
+    echo $toad3->getName() . ': прыгнул сюда - ' . $toad3->getPlace() . "<br>";
+

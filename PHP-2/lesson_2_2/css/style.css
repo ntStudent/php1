@@ -1,0 +1,14 @@
+body{
+    background: #9c9;
+}
+
+
+.wrapper{
+    width: 800px;
+    border: 2px solid #888;
+    margin: 50px auto 0;
+    padding: 0 15px;
+    font-family: Verdana,sana-serif;
+    background-color: #d8e9f1;
+    /*background-color: red;*/
+}

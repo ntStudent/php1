@@ -30,10 +30,11 @@
             echo $this->x . ' ' . $this->y . '<br>';
         }
 
+// так как все наследники двигаются по разному то делаем этот класс абстрактным
         // public function move()
         // {
-        //     $this->x += 1;
-        //     $this->y += 1;
+            // $this->x += 1;
+            // $this->y += 1;
         // }
         abstract public function move();
 
@@ -52,6 +53,7 @@
 
         public function __construct($n, $c)
         {
+            // обращаемся к родительскому конструктору
             parent::__construct();
 
             $this->hp = 100;
@@ -67,7 +69,11 @@
 
         public function move()
         {
+            // так как этот метод у родителя является абстрактным то переопределяем уго у наследника
             // parent::move();
+            // $this->x += 4;
+            // $this->y += 4;
+
             $this->x += 5;
             $this->y += 5;
         }
@@ -99,8 +105,10 @@
         }
         public function move()
         {
+            // parent::move(); так как этот метод у родителя является абстрактным то переопределяем уго у наследника
             $this->x += 1;
             $this->y += 1;
+
         }
 
 
@@ -117,10 +125,6 @@
 
     class superMosquito extends Mosquito
     {
-        // свойства класса (то что характеризует объект)
-        private $trunk;
-
-        // методы класса (то что умеет делать объект)
         public function __construct()
         {
             parent::__construct();

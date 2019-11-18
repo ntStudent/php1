@@ -1,4 +1,6 @@
-<?php include_once 'bootstrap.php'?>
+<?php
+include_once 'bootstrap.php'
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
