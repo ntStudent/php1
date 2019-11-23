@@ -1,10 +1,14 @@
 <?php
-class Math
+class math
 {
     const PI = 3.14;
+    // public $rad;
+
 
     public static function circleRange($r)
     {
-        return self::PI * $r * $r;// self-обращение к стачическому методу или константе внутри класса
+        // $this->rad = $r;
+        // что бы не использовать имя класса для вызова статического свойства, так как имя константы может измениться используем слово 'self'
+        return self::PI * $r * $r;
     }
 }

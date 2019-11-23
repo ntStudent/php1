@@ -154,6 +154,8 @@ class htmlGenerator
     {
         $tags = $this->findByTag($tagName, $number);
 
+        // var_dump($tags);
+
         if(is_array($tags[$where])){
             foreach($tags[$where] as $line) {
                 $this->beautyTextProperty = str_replace($line, $html . $line, $this->beautyTextProperty);

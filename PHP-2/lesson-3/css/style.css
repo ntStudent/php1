@@ -12,3 +12,8 @@ body{
     background-color: #d8e9f1;
     /*background-color: red;*/
 }
+
+p>img{
+    float: right;
+    width: 200px;
+}
