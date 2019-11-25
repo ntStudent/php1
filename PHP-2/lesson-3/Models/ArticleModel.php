@@ -11,6 +11,11 @@ class ArticleModel
         // return scandir(ArticleModel::DB);
     }
 
+    public function getById($id)
+    {
+        return file_get_contents("data/article_$id.txt");
+    }
+
     protected function extractData(array $arr)
     {
         $res = [];

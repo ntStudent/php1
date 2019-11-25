@@ -2,6 +2,14 @@
 
 class ArticleController
 {
+    protected $get;
+
+    public function __construct($get)
+    {
+        $this->get = $get;
+    }
+
+
     public function indexAction()
     {
         $mArticle = new ArticleModel();
@@ -17,9 +25,16 @@ class ArticleController
             ]);
     }
 
-    public function articleAction()
+    public function oneAction()
     {
+        $mArticle = new ArticleModel();
 
+        $id = $this->get['id'];
+        $article = $mArticle->getById($id);
+
+        echo $this->render('Views/one.html.php', [
+                'article' => $article
+            ]);
     }
 
     protected function render($filename, $values = array())
