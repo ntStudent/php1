@@ -1,3 +1,15 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Наследование</title>
+</head>
+<body>
+    <a href="index.php">домой</a><br><br>
+    <hr color="red">
+</body>
+</html>
 <?php
 // один класс один файл
 // создаем класс для дальнейшего наследования переносим в него все что одинаковое у классов -Toad- и -Mosquito-
@@ -31,6 +43,7 @@
         }
 
 // так как все наследники двигаются по разному то делаем этот класс абстрактным
+// абстрактный метод это метод который не содержит реализации но обязательно должен быть переопределен в классе потомке, служит подсказкой
         // public function move()
         // {
             // $this->x += 1;
@@ -69,7 +82,7 @@
 
         public function move()
         {
-            // так как этот метод у родителя является абстрактным то переопределяем уго у наследника
+            // так как этот метод у родителя является абстрактным то переопределяем его у наследника
             // parent::move();
             // $this->x += 4;
             // $this->y += 4;
@@ -92,7 +105,7 @@
     class Mosquito extends Animal
     {
         // свойства класса (то что характеризует объект)
-        private $trunk;
+        protected $trunk;
 
         // методы класса (то что умеет делать объект)
         public function __construct()
@@ -102,13 +115,13 @@
             $this->hp = 10;
             $this->power = 1;
             $this->color = 'orange';
+            $this->trunk = 2;
         }
         public function move()
         {
-            // parent::move(); так как этот метод у родителя является абстрактным то переопределяем уго у наследника
+            // parent::move(); так как этот метод у родителя является абстрактным то переопределяем его у наследника
             $this->x += 1;
             $this->y += 1;
-
         }
 
 
@@ -119,7 +132,7 @@
 
         public function bite()
         {
-
+            $this->power = $this->power * $this->trunk;
         }
     }
 
@@ -131,6 +144,15 @@
 
             $this->power *= 3;
             $this->color = 'black';
+            $this->trunk += 2;
+        }
+
+         public function move()
+        {
+
+            parent::move();
+            $this->x += 4;
+            $this->y += 4;
         }
     }
 #######################################################
@@ -163,7 +185,7 @@
     echo $m1->move();
     echo 'комар1 перелетел - ' . $m1->getPlace() . '<br><br>';
 
-     $sm1 = new superMosquito();
+    $sm1 = new superMosquito();
     echo 'суперкомар - ' . $sm1->getPlace() . '<br>';
     echo $sm1->move();
     echo 'суперкомар перелетел - ' . $sm1->getPlace() . '<br>';
