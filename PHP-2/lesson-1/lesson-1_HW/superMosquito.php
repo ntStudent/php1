@@ -5,7 +5,6 @@ include_once 'Mosquito.php';
         public function __construct()
         {
             parent::__construct();
-
             $this->power *= 3;
             $this->color = 'black';
             $this->trunk += 2;

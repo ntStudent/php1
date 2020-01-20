@@ -91,3 +91,5 @@
 2019-10-21 23:42:51~@~/mySite/coursePhp/PHP-1/lesson-1/course_php_1-1.php~@~http://localhost/mySite/~@~::1~@~Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362
 2019-10-22 22:12:27~@~/mySite/coursePhp/PHP-1/lesson-1/course_php_1-1.php~@~http://localhost/mySite/~@~::1~@~Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 YaBrowser/19.9.3.314 Yowser/2.5 Safari/537.36
 2019-12-07 14:34:32~@~/mysite/coursePhp/PHP-1/lesson-1/course_php_1-1.php~@~http://localhost/mysite/~@~::1~@~Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0
+2020-01-18 01:52:31~@~/mysite/coursePhp/PHP-1/lesson-1/course_php_1-1.php~@~http://localhost/mysite/index.php~@~::1~@~Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0
+2020-01-18 01:54:17~@~/mysite/coursePhp/PHP-1/lesson-1/course_php_1-1.php~@~http://localhost/mysite/coursePhp/PHP-1/lesson-1/course_php_1_admin.php~@~::1~@~Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0

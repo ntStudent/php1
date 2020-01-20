@@ -158,7 +158,6 @@
 #######################################################
 
     $toad1 = new Toad('Jhon', 'Red');//имя в скобках это переменная -$n- функции конструктор
-
     // с помощью метода возвращающего имя мы можем вывести имя из вне, такой метод называется -геттер-
     echo $toad1->getName() . ': сейчас тут - ' . $toad1->getPlace() . "<br>";
     $toad1->showPlace();
@@ -189,7 +188,7 @@
     echo 'суперкомар - ' . $sm1->getPlace() . '<br>';
     echo $sm1->move();
     echo 'суперкомар перелетел - ' . $sm1->getPlace() . '<br>';
-    echo $sm1->getPower() . '<br>';
-    echo $m1->getPower() . '<br>';
-    echo $toad1->getPower() . '<br>';
-    echo $toad2->getPower() . '<br>';
+    echo $sm1->getPower() . '- сила супер комара<br>';
+    echo $m1->getPower() . '- сила комара <br>';
+    echo $toad1->getPower() . '- сила жабы - Jhon<br>';
+    echo $toad2->getPower() . '- сила жабы - Pimple<br>';

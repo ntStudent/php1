@@ -9,7 +9,9 @@ include_once('../../function/functions.php');
 	$fex = 'data/error.log';
 	$dtr = date('Y.m.d - H:i:s');
 //WHERE is_moderate='0'    WHERE lang='english'   ORDER BY dt_reg DESC
-	 $query = $db->prepare("SELECT dt_reg, title, content, id_article FROM articles");
+	 // $query = $db->prepare("SELECT dt_reg, title, content, id_article FROM articles");
+	// Поменяем запрос в бд так что бы последняя статья была с верху
+	 $query = $db->prepare("SELECT * FROM articles ORDER BY dt_reg DESC");
 	 $query->execute();
 
 	 if($query->errorCode() != PDO::ERR_NONE){
@@ -22,7 +24,7 @@ include_once('../../function/functions.php');
 	}
 
 	 $comments = $query->fetchAll();
-	
+
 
 	 // $res = $query->fetch();
 	 // echo '<pre>';
@@ -33,7 +35,7 @@ include_once('../../function/functions.php');
 	<title>listNews</title>
 	<link rel="stylesheet" type="text/css" href="../css/add.css">
 	<a href="index.php"> home </a>
-	<?php 
+	<?php
 	if(is_auth_db()){
 		echo " <a href=\" add.php \"> add news </a> ";
 	}
