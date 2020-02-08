@@ -3,6 +3,8 @@
 // include_once 'htmlGenerator.php';
 
 // создаем автолоад функция с двумя подчеркиваниями впереди
+// при запуске PHP пытается найти класс -htmlGenerator- что бы создать экземпляр класса, но не находит и тогда запускается функция "__autoload"
+// с параметром "$name". И используя этот параметр мы подключаем все классы, которые находятся в одноимённых отдельных файлах.
 function __autoload($name)
 {
     include_once "$name.php";
@@ -27,12 +29,12 @@ $hGen_1 = new htmlGenerator('data/article_1.txt');
 
 // вызываем константу
 // echo htmlGenerator::NAME;
+// $hGen_1->GetA();
 
-
-// вот так переделали строку ниже
+// строка -32-  вот так переделали строку ниже
 $hGen_1
     ->wrapEachInP()
-    ->addTextToTop(htmlGenerator::getTitle('Мертвые души - Н.В. Гоголя', 4))
+    ->addTextToTop(htmlGenerator::getTitle('Мертвые души - Н.В. Гоголя', 4))// так как метод "getTitle" является статическим "htmlGenerator строчка 123" то мы вызываем его напрямую из класса. так делают что бы лишний раз не вызывать весь объект, а только метод.
     ->addTo(htmlGenerator::getImg('crazy.jpg', 'relax'),'p', 5, 1)
     // ->addTextToTop(htmlGenerator::getImg('crazy.jpg', 'relax'))
     // ->findByTag('p', 5)
@@ -40,3 +42,13 @@ $hGen_1
     // ->wrapAllInBox();
 
   // echo math::circleRange(3);
+
+    // если бы в методах не было вызова объекта "return $this" то было бы так
+    /*
+    $hGen_1->wrapEachInP();
+    $hGen_1->addTextToTop(htmlGenerator::getTitle('Мертвые души - Н.В. Гоголя', 4));
+    $hGen_1->addTo(htmlGenerator::getImg('crazy.jpg', 'relax'),'p', 5, 1);
+    $hGen_1->addTextToTop(htmlGenerator::getImg('crazy.jpg', 'relax'));
+    $hGen_1->findByTag('p', 5);
+    $hGen_1->wrapAllInBox('wrapper');
+    */

@@ -15,7 +15,9 @@ class htmlGenerator
     const NAME = 'bill';
 
 
-    public function __construct($pathVar)//вводим переменную в которую будет присваиваться путь к файлу, который(путь) будет указываться при создании нового экземпляра класса
+
+
+    public function __construct($pathVar)//вводим переменную в которую будет присваиваться путь к файлу, который(путь) будет указываться при создании нового экземпляра класса нужнр добавить проверку что это действительно путь к файлу
     // Переменную нужно проверить что бы в ней был указан путь к файлу а не что то другое
     {
         $this->pathProperty = $pathVar;//присваеваем свойству значение переменной
@@ -30,7 +32,7 @@ class htmlGenerator
     private function loadText()
     {
         // так как свойству "pathProperty" уже присвоена переменная хранящая путь к файлу, то и указываем его как параметр функции "file_get_content"
-        $this->textProperty = file_get_contents($this->pathProperty);
+        $this->textProperty = file_get_contents($this->pathProperty);// нужна проверка что это текстовый файл
 
         // выводим текст, это черновой вариант для демонстрации комментим его после проверки того что текст из заданного файла выводится
         // echo $this->textProperty;
@@ -38,6 +40,8 @@ class htmlGenerator
         // приравниваем бьютитекст к тексту
         $this->beautyTextProperty = $this->textProperty;
     }
+
+
 
 
     // продолжаем работу и создаем метод для нахождения абзацев и обертки их в тег <p>
@@ -64,10 +68,13 @@ class htmlGenerator
         $arr = $this->explodeText($this->beautyTextProperty);
         $intermediateText = ' ';
                 foreach($arr as $p){
+            // $intermediateText = $intermediateText . "<p>$p</p>";
             $intermediateText .= "<p>$p</p>";
         }
         $this->beautyTextProperty = $intermediateText;
-        // Возвращает сам себя
+
+        // Возвращает весь объект целиком, сразу же позволяя использовать другие методы и свойства,
+        //не вызывая еще раз объект. пример "bootstrap.php строка 32"
         return $this;
     }
 
@@ -90,9 +97,9 @@ class htmlGenerator
 
 
     // создадим еще один метод по оборачиванию, например всего текста в -div-
-    // далее усложним действия метода, добавив работу с переменной
+    // далее усложним действия метода, добавив работу с переменной обозначающей класс
     // public function wrapAllInBox()
-    public function wrapAllInBox($class = '')
+    public function wrapAllInBox($class = '')// устанавливаем значение перенменной по умолчанию равной пустой строке так  можем ничего не передавать из вне, и ошибки не будет
     {
         $class = $class === '' ? '' : "class='$class'";
 
@@ -113,7 +120,7 @@ class htmlGenerator
     // {
     //     return "<h$level>$text</h$level>";
     // }
-    // статический метод привязан к классу, а не к объекту
+    // строчка -123-  статический метод привязан к классу, а не к объекту
     public static function getTitle($text, $level = '2')
     {
         return "<h$level>$text</h$level>";
